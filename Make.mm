@@ -11,8 +11,7 @@ PACKAGE = main
 
 RECURSE_DIRS = \
     lib \
-    pyre \
-    tests 
+    pyre
 
 #--------------------------------------------------------------------------
 #
@@ -29,6 +28,6 @@ tidy::
 
 
 # version
-# $Id: Make.mm,v 1.2 2004/05/18 23:12:26 tan2 Exp $
+# $Id: Make.mm,v 1.3 2005/01/21 20:19:08 tan2 Exp $
 
 # End of file
