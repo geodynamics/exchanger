@@ -10,8 +10,8 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#if !defined(pyCitcom_SIUnit_h)
-#define pyCitcom_SIUnit_h
+#if !defined(pyExchanger_SIUnit_h)
+#define pyExchanger_SIUnit_h
 
 #include "Array2D.h"
 #include "BoundedBox.h"
@@ -23,12 +23,13 @@ namespace Exchanger {
     // singleton class
 
     class SIUnit {
-	const double length_factor;
-	const double velocity_factor;
-	const double temperature_factor;
-	const double temperature_offset;
-	const double time_factor;
-	const double traction_factor;
+    protected:
+	double length_factor;
+	double velocity_factor;
+	double temperature_factor;
+	double temperature_offset;
+	double time_factor;
+	double traction_factor;
 
     public:
 	SIUnit();
@@ -64,6 +65,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: SIUnit.h,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: SIUnit.h,v 1.2 2004/05/08 08:13:16 tan2 Exp $
 
 // End of file

@@ -7,8 +7,8 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#if !defined(pyCitcom_CartesianCoord_h)
-#define pyCitcom_CartesianCoord_h
+#if !defined(pyExchanger_CartesianCoord_h)
+#define pyExchanger_CartesianCoord_h
 
 #include "Array2D.h"
 #include "BoundedBox.h"
@@ -51,6 +51,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: CartesianCoord.h,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: CartesianCoord.h,v 1.2 2004/05/08 08:13:16 tan2 Exp $
 
 // End of file

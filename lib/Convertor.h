@@ -7,8 +7,8 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#if !defined(pyCitcom_Convertor_h)
-#define pyCitcom_Convertor_h
+#if !defined(pyExchanger_Convertor_h)
+#define pyExchanger_Convertor_h
 
 #include "Array2D.h"
 #include "BoundedBox.h"
@@ -68,6 +68,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: Convertor.h,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: Convertor.h,v 1.2 2004/05/08 08:13:16 tan2 Exp $
 
 // End of file
