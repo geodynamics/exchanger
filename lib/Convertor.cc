@@ -43,15 +43,6 @@ namespace Exchanger {
     }
 
 
-    void Convertor::init(bool dimensional, bool transformational)
-    {
-	journal::debug_t debug("Exchanger");
-	debug << journal::loc(__HERE__) << journal::end;
-
-	inited = true;
-    }
-
-
     Convertor::Convertor()
     {}
 
@@ -62,6 +53,8 @@ namespace Exchanger {
 	si = 0;
 	delete cart;
 	cart = 0;
+
+	inited = false;
     }
 
 
@@ -156,6 +149,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: Convertor.cc,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: Convertor.cc,v 1.2 2004/05/08 08:50:44 tan2 Exp $
 
 // End of file

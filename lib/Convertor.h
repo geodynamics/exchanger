@@ -23,12 +23,12 @@ namespace Exchanger {
     // singleton class
 
     class Convertor {
+    protected:
 	static SIUnit* si;
 	static CartesianCoord* cart;
 	static bool inited;
 
     public:
-	virtual void init(bool dimensional, bool transformational); // overridden by child class
 	~Convertor();
 
 	static Convertor& instance();  // the singleton
@@ -68,6 +68,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: Convertor.h,v 1.2 2004/05/08 08:13:16 tan2 Exp $
+// $Id: Convertor.h,v 1.3 2004/05/08 08:50:44 tan2 Exp $
 
 // End of file
