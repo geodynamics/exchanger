@@ -57,11 +57,11 @@ EXPORT_HEADERS = \
 
 EXPORT_LIBS = $(PROJ_LIB)
 
-all: $(PROJ_LIB) 
+all: $(PROJ_LIB) export-headers
 
 
 
 # version
-# $Id: Make.mm,v 1.7 2004/06/29 17:30:54 tan2 Exp $
+# $Id: Make.mm,v 1.8 2004/07/02 19:46:23 tan2 Exp $
 
 # End of file
