@@ -9,7 +9,6 @@
 
 #include <portinfo>
 #include <vector>
-#include "journal/journal.h"
 #include "Boundary.h"
 
 
@@ -64,6 +63,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: Boundary.cc,v 1.2 2004/05/08 08:59:16 tan2 Exp $
+// $Id: Boundary.cc,v 1.3 2004/06/02 19:39:58 tan2 Exp $
 
 // End of file
