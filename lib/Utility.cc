@@ -51,6 +51,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: Utility.cc,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: Utility.cc,v 1.1.1.1 2004/05/08 01:51:14 tan2 Exp $
 
 // End of file

@@ -51,6 +51,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: CartesianCoord.h,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: CartesianCoord.h,v 1.1.1.1 2004/05/08 01:51:14 tan2 Exp $
 
 // End of file

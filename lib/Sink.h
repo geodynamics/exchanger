@@ -122,6 +122,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: Sink.h,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: Sink.h,v 1.1.1.1 2004/05/08 01:51:14 tan2 Exp $
 
 // End of file
