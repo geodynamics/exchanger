@@ -10,14 +10,13 @@
 PROJECT = Exchanger
 PACKAGE = Exchangermodule
 
-PROJ_LIB = $(BLD_LIBDIR)/libExchanger.$(EXT_LIB)
+PROJ_LIB = libExchanger.$(EXT_LIB)
 
 PROJ_CXX_SRCLIB = \
         -ljournal \
         -lmpimodule
 
-EXTERNAL_INCLUDES += $(PYTHON_INCDIR)
-EXTERNAL_LIBPATH += -L$(TOOLS_LIBDIR)
+EXTERNAL_INCLUDES += $(PYTHON_INCDIR) $(PYTHIA_DIR)/include
 
 PROJ_SRCS = \
 	Boundary.cc \
@@ -61,10 +60,11 @@ EXPORT_LIBS = $(PROJ_LIB)
 
 all: $(PROJ_LIB) export
 
-export:: release-headers export-libraries
+export:: export-headers 
+#export:: release-headers release-libraries
 
 
 # version
-# $Id: Make.mm,v 1.4 2004/05/11 00:51:50 tan2 Exp $
+# $Id: Make.mm,v 1.5 2004/06/11 18:04:16 tan2 Exp $
 
 # End of file
