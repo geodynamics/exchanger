@@ -101,7 +101,7 @@ namespace Exchanger {
 	std::vector<MPI_Request> request;
 	request.reserve(2*sourceRanks.size());
 
-	for(size_t i=0; i<source.size(); i++)
+	for(size_t i=0; i<sourceRanks.size(); i++)
 	    if(numSrcNodes[i]) {
 		request.push_back(MPI_Request());
 		array1.recv(comm, sourceRanks[i], beginSrcNodes[i],
@@ -122,6 +122,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: Sink.h,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: Sink.h,v 1.2 2004/05/09 20:59:52 tan2 Exp $
 
 // End of file
