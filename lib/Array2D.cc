@@ -170,7 +170,7 @@ namespace Exchanger {
 	}
 #endif
 	if(capacity() == size()) {
-	    reserve(size()*1.5);
+	    reserve(size()*2);
 	    copy(val.begin(), val.end(), back_inserter(a_));
 	} else
 	    for(int i=0; i<N; ++i)
@@ -182,7 +182,7 @@ namespace Exchanger {
     void Array2D<T,N>::push_back(const T& val)
     {
 	if(capacity() == size()) {
-	    reserve(size()*1.5);
+	    reserve(size()*2);
 	    fill_n(back_inserter(a_), N, val);
 	} else
 	    for(int i=0; i<N; ++i)
@@ -445,6 +445,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: Array2D.cc,v 1.3 2004/06/02 19:34:11 tan2 Exp $
+// $Id: Array2D.cc,v 1.4 2004/06/09 18:00:18 tan2 Exp $
 
 // End of file
