@@ -32,12 +32,16 @@ namespace Exchanger {
 	virtual void coordinate(Array2D<double,DIM>& X) const = 0;
 	virtual void vector(Array2D<double,DIM>& V,
 			    const Array2D<double,DIM>& X) const = 0;
+	virtual void tensor_rank2(Array2D<double,STRESS_DIM>& S,
+			    const Array2D<double,DIM>& X) const = 0;
 
 	// Transform to spherical coordinate system from cartesian system
 	virtual void xcoordinate(BoundedBox& bbox) const = 0;
 	virtual void xcoordinate(BoundingBox& bbox) const = 0;
 	virtual void xcoordinate(Array2D<double,DIM>& X) const = 0;
 	virtual void xvector(Array2D<double,DIM>& V,
+			     const Array2D<double,DIM>& X) const = 0;
+	virtual void xtensor_rank2(Array2D<double,STRESS_DIM>& S,
 			     const Array2D<double,DIM>& X) const = 0;
 
     private:
@@ -54,6 +58,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: CartesianCoord.h,v 1.3 2004/07/22 04:11:42 tan2 Exp $
+// $Id: CartesianCoord.h,v 1.4 2005/01/29 00:05:43 ces74 Exp $
 
 // End of file

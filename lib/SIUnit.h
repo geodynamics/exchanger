@@ -31,6 +31,7 @@ namespace Exchanger {
 	double temperature_offset;
 	double time_factor;
 	double traction_factor;
+	double stress_factor;
 
     public:
 	SIUnit();
@@ -43,6 +44,7 @@ namespace Exchanger {
 	void temperature(Array2D<double,1>& T) const;
 	void time(double& t) const;
 	void traction(Array2D<double,DIM>& F) const;
+	void stress(Array2D<double,STRESS_DIM>& S) const;
 	void velocity(Array2D<double,DIM>& V) const;
 
 	// non-dimensionalize
@@ -52,6 +54,7 @@ namespace Exchanger {
 	void xtemperature(Array2D<double,1>& T) const;
 	void xtime(double& t) const;
 	void xtraction(Array2D<double,DIM>& F) const;
+	void xstress(Array2D<double,STRESS_DIM>& S) const;
 	void xvelocity(Array2D<double,DIM>& V) const;
 
     private:
@@ -68,6 +71,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: SIUnit.h,v 1.3 2004/07/22 04:11:42 tan2 Exp $
+// $Id: SIUnit.h,v 1.4 2005/01/29 00:05:43 ces74 Exp $
 
 // End of file

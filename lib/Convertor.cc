@@ -104,6 +104,14 @@ namespace Exchanger {
     }
 
 
+    void Convertor::stress(Array2D<double,STRESS_DIM>& S,
+			     const Array2D<double,DIM>& X) const
+    {
+	if(si) si->stress(S);
+	if(cart) cart->tensor_rank2(S, X);
+    }
+
+
     void Convertor::velocity(Array2D<double,DIM>& V,
 			     const Array2D<double,DIM>& X) const
     {
@@ -155,6 +163,14 @@ namespace Exchanger {
     }
 
 
+    void Convertor::xstress(Array2D<double,STRESS_DIM>& S,
+			      const Array2D<double,DIM>& X) const
+    {
+	if(cart) cart->xtensor_rank2(S, X);
+	if(si) si->xstress(S);
+    }
+
+
     void Convertor::xvelocity(Array2D<double,DIM>& V,
 			      const Array2D<double,DIM>& X) const
     {
@@ -166,6 +182,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: Convertor.cc,v 1.4 2004/07/22 04:11:42 tan2 Exp $
+// $Id: Convertor.cc,v 1.5 2005/01/29 00:05:43 ces74 Exp $
 
 // End of file

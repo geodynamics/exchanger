@@ -67,6 +67,14 @@ namespace Exchanger {
     }
 
 
+    void SIUnit::stress(Array2D<double,STRESS_DIM>& S) const
+    {
+	for(int i=0; i<S.size(); ++i)
+	    for(int d=0; d<STRESS_DIM; ++d)
+		S[d][i] *= stress_factor;
+    }
+
+
     void SIUnit::velocity(Array2D<double,DIM>& V) const
     {
 	for(int i=0; i<V.size(); ++i)
@@ -119,6 +127,14 @@ namespace Exchanger {
     }
 
 
+    void SIUnit::xstress(Array2D<double,STRESS_DIM>& S) const
+    {
+	for(int i=0; i<S.size(); ++i)
+	    for(int d=0; d<STRESS_DIM; ++d)
+			S[d][i] /= stress_factor;
+    }
+
+
     void SIUnit::xvelocity(Array2D<double,DIM>& V) const
     {
 	for(int i=0; i<V.size(); ++i)
@@ -131,6 +147,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: SIUnit.cc,v 1.2 2004/07/22 04:11:42 tan2 Exp $
+// $Id: SIUnit.cc,v 1.3 2005/01/29 00:05:43 ces74 Exp $
 
 // End of file

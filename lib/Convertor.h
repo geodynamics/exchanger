@@ -42,6 +42,8 @@ namespace Exchanger {
 	void time(double& t) const;
 	void traction(Array2D<double,DIM>& F,
 		      const Array2D<double,DIM>& X) const;
+	void stress(Array2D<double,STRESS_DIM>& S,
+		      const Array2D<double,DIM>& X) const;
 	void velocity(Array2D<double,DIM>& V,
 		      const Array2D<double,DIM>& X) const;
 
@@ -52,6 +54,8 @@ namespace Exchanger {
 	void xtemperature(Array2D<double,1>& T) const;
 	void xtime(double& t) const;
 	void xtraction(Array2D<double,DIM>& F,
+		       const Array2D<double,DIM>& X) const;
+	void xstress(Array2D<double,STRESS_DIM>& S,
 		       const Array2D<double,DIM>& X) const;
 	void xvelocity(Array2D<double,DIM>& V,
 		       const Array2D<double,DIM>& X) const;
@@ -71,6 +75,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: Convertor.h,v 1.4 2004/07/22 04:11:42 tan2 Exp $
+// $Id: Convertor.h,v 1.5 2005/01/29 00:05:43 ces74 Exp $
 
 // End of file
