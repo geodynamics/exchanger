@@ -38,9 +38,9 @@ namespace Exchanger {
 	sendMesh(mesh);
 
 	recvMeshNode();
-	initX(mesh);
-
 	testMeshNode();
+
+	initX(mesh);
     }
 
 
@@ -150,12 +150,8 @@ namespace Exchanger {
 	    if(start == a.end()) {
  		journal::warning_t warning("Sink");
  		warning << journal::loc(__HERE__)
-			<< "mesh node #" << index << '(';
-
-		for(int d=0; d<DIM; ++d)
-		    warning << X_[d][index] << ' ';
-
-		warning << ") not interpolated" << journal::end;
+			<< "mesh node #" << index << " not interpolated"
+			<< journal::end;
 	    }
 	}
     }
@@ -175,6 +171,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: Sink.cc,v 1.5 2004/07/02 00:44:03 tan2 Exp $
+// $Id: Sink.cc,v 1.6 2004/07/02 01:05:01 tan2 Exp $
 
 // End of file
