@@ -14,7 +14,6 @@ PROJ_LIB = libExchanger.$(EXT_LIB)
 
 PROJ_CXX_SRCLIB = \
         -ljournal \
-        -lmpimodule
 
 EXTERNAL_INCLUDES += $(PYTHON_INCDIR) $(PYTHIA_DIR)/include
 
@@ -65,6 +64,6 @@ export:: export-headers
 
 
 # version
-# $Id: Make.mm,v 1.5 2004/06/11 18:04:16 tan2 Exp $
+# $Id: Make.mm,v 1.6 2004/06/11 19:02:56 tan2 Exp $
 
 # End of file
