@@ -26,8 +26,7 @@ namespace Exchanger {
 	Array2D<double,NODES_PER_ELEMENT> shape_; // shape functions for interpolation
 
     public:
-	Interpolator(const BoundedMesh& boundedMesh,
-		     Array2D<int,1>& meshNode);
+	Interpolator();
 	virtual ~Interpolator();
 
 	inline int size() const {return elem_.size();}
@@ -41,18 +40,6 @@ namespace Exchanger {
 	virtual void interpolateVelocity(Array2D<double,DIM>& V) = 0;
 
     private:
-	void init(const BoundedMesh& boundedMesh,
-		  Array2D<int,1>& meshNode);
-	
-	void selfTest(const BoundedMesh& boundedMesh,
-		      const Array2D<int,1>& meshNode) const;
-	
-	virtual void init2(const BoundedMesh& boundedMesh,
-			  Array2D<int,1>& meshNode) = 0;
-	
-	virtual void selfTest2(const BoundedMesh& boundedMesh,
-		      const Array2D<int,1>& meshNode) const = 0
-;
 	// disable copy c'tor and assignment operator
 	Interpolator(const Interpolator&);
 	Interpolator& operator=(const Interpolator&);
@@ -64,6 +51,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: Interpolator.h,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: Interpolator.h,v 1.2 2004/05/09 21:00:35 tan2 Exp $
 
 // End of file
