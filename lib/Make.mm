@@ -35,11 +35,34 @@ PROJ_SRCS = \
 	inlets_outlets.cc \
 	util.cc \
 
+EXPORT_HEADERS = \
+	Array2D.h \
+	Array2D.cc \
+	Boundary.h \
+	BoundedBox.h \
+	Convertor.h \
+	Inlet.h \
+	Interpolator.h \
+	Outlet.h \
+	SIUnit.h \
+	Sink.h \
+	Source.h \
+	Spherical2Cartesian.h \
+	Utility.h \
+	UtilTemplate.h \
+	UtilTemplate.cc \
+	inlets_outlets.h \
+	util.h \
 
-all: $(PROJ_LIB)
+
+EXPORT_LIBS = $(PROJ_LIB)
+
+all: $(PROJ_LIB) export
+
+export:: release-headers export-libraries
 
 
 # version
-# $Id: Make.mm,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+# $Id: Make.mm,v 1.2 2004/05/08 07:02:44 tan2 Exp $
 
 # End of file
