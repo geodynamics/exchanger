@@ -163,11 +163,6 @@ namespace Exchanger {
 
     void Sink::initX(const BoundedMesh& mesh)
     {
-	journal::debug_t debug("Exchanger");
-	debug << "mesh.size = " << mesh.size() << ' '
-	      << "meshNode.size = " << meshNode_.size()
-	      << journal::end;
-
 	X_.resize(meshNode_.size());
 
 	for(int i=0; i<X_.size(); ++i) {
@@ -180,6 +175,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: Sink.cc,v 1.4 2004/07/02 00:37:22 tan2 Exp $
+// $Id: Sink.cc,v 1.5 2004/07/02 00:44:03 tan2 Exp $
 
 // End of file
