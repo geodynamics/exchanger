@@ -8,7 +8,6 @@
 //
 
 #include <portinfo>
-#include "journal/journal.h"
 #include "BoundedMesh.h"
 #include "Interpolator.h"
 #include "Source.h"
@@ -84,6 +83,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: Source.cc,v 1.2 2004/05/08 08:59:16 tan2 Exp $
+// $Id: Source.cc,v 1.3 2004/06/02 20:01:58 tan2 Exp $
 
 // End of file

@@ -11,6 +11,7 @@
 #define pyExchanger_Source_h
 
 #include <vector>
+#include "journal/journal.h"
 #include "mpi.h"
 #include "Array2D.h"
 #include "BoundedBox.h"
@@ -76,9 +77,9 @@ namespace Exchanger {
     {
 #ifdef DEBUG
 	if(size() != array.size()) {
-	    journal::firewall_t firewall("Exchanger-Source");
-	    firewall << journal::loc(__HERE__)
-		     << "Source: inconsistenet array size" << journal::end;
+ 	    journal::firewall_t firewall("Exchanger-Source");
+ 	    firewall << journal::loc(__HERE__)
+ 		     << "Source: inconsistenet array size" << journal::end;
 	    throw std::out_of_range("Source");
 	}
 #endif
@@ -97,9 +98,9 @@ namespace Exchanger {
     {
 #ifdef DEBUG
 	if(size() != array1.size() || size() != array2.size()) {
-	    journal::firewall_t firewall("Exchanger-Source");
-	    firewall << journal::loc(__HERE__)
-		     << "Source: inconsistenet array size" << journal::end;
+ 	    journal::firewall_t firewall("Exchanger-Source");
+ 	    firewall << journal::loc(__HERE__)
+ 		     << "Source: inconsistenet array size" << journal::end;
 	    throw std::out_of_range("Source");
 	}
 #endif
@@ -122,6 +123,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: Source.h,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: Source.h,v 1.2 2004/06/02 20:01:58 tan2 Exp $
 
 // End of file
