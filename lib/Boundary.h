@@ -16,7 +16,8 @@
 namespace Exchanger {
 
     class Boundary : public BoundedMesh {
-	Array2D<int,DIM> normal_;
+    protected:
+	    Array2D<int,DIM> normal_;
 
     public:
 	Boundary();
@@ -41,6 +42,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: Boundary.h,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: Boundary.h,v 1.2 2004/05/08 07:51:24 tan2 Exp $
 
 // End of file
