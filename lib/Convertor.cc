@@ -70,6 +70,13 @@ namespace Exchanger {
     }
 
 
+    void Convertor::coordinate(BoundingBox& bbox) const
+    {
+	if(si) si->coordinate(bbox);
+	if(cart) cart->coordinate(bbox);
+    }
+
+
     void Convertor::coordinate(Array2D<double,DIM>& X) const
     {
 	if(si) si->coordinate(X);
@@ -114,6 +121,13 @@ namespace Exchanger {
     }
 
 
+    void Convertor::xcoordinate(BoundingBox& bbox) const
+    {
+	if(cart) cart->xcoordinate(bbox);
+	if(si) si->xcoordinate(bbox);
+    }
+
+
     void Convertor::xcoordinate(Array2D<double,DIM>& X) const
     {
 	if(cart) cart->xcoordinate(X);
@@ -152,6 +166,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: Convertor.cc,v 1.3 2004/06/02 19:52:19 tan2 Exp $
+// $Id: Convertor.cc,v 1.4 2004/07/22 04:11:42 tan2 Exp $
 
 // End of file

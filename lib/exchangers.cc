@@ -12,6 +12,7 @@
 #include "mpi.h"
 #include "mpi/Communicator.h"
 #include "BoundedBox.h"
+#include "BoundingBox.h"
 #include "Convertor.h"
 #include "DIM.h"
 #include "Inlet.h"
@@ -24,6 +25,7 @@
 namespace Exchanger {
 
     void deleteBoundedBox(void* p);
+    void deleteBoundingBoxes(void* p);
     void deleteSink(void*);
 
 }
@@ -75,6 +77,50 @@ PyObject * PyExchanger_exchangeBoundedBox(PyObject *, PyObject *args)
     newbbox->print("Exchanger-exchangers-RemoteBBox");
 
     PyObject *cobj = PyCObject_FromVoidPtr(newbbox, deleteBoundedBox);
+    return Py_BuildValue("O", cobj);
+}
+
+
+char PyExchanger_exchangeBoundingBox__doc__[] = "";
+char PyExchanger_exchangeBoundingBox__name__[] = "exchangeBoundingBox";
+
+PyObject * PyExchanger_exchangeBoundingBox(PyObject *, PyObject *args)
+{
+    PyObject *obj0, *obj1, *obj2;
+    int target;
+
+    if (!PyArg_ParseTuple(args, "OOOi:exchangeBoundingBox",
+                          &obj0, &obj1, &obj2, &target))
+        return NULL;
+
+    BoundingBox* box = static_cast<BoundingBox*>(PyCObject_AsVoidPtr(obj0));
+
+    mpi::Communicator* temp1 = static_cast<mpi::Communicator*>
+                               (PyCObject_AsVoidPtr(obj1));
+    MPI_Comm mycomm = temp1->handle();
+
+    const int leader = 0;
+    int rank;
+    MPI_Comm_rank(mycomm, &rank);
+
+    BoundingBox* my_boxes = gatherBoundingBox(mycomm, leader, box);
+    BoundingBox* remote_boxes;
+
+    if(rank == leader) {
+        mpi::Communicator* temp2 = static_cast<mpi::Communicator*>
+                                   (PyCObject_AsVoidPtr(obj2));
+        MPI_Comm intercomm = temp2->handle();
+
+	int my_comm_size;
+	MPI_Comm_size(mycomm, &my_comm_size);
+
+	remote_boxes = exchangeBoundingBox(intercomm, target,
+					   my_boxes, my_comm_size);
+    }
+
+    broadcastBoundingBox(mycomm, leader, remote_boxes);
+
+    PyObject *cobj = PyCObject_FromVoidPtr(remote_boxes, deleteBoundingBoxes);
     return Py_BuildValue("O", cobj);
 }
 
@@ -267,6 +313,12 @@ namespace Exchanger {
     }
 
 
+    void deleteBoundingBoxes(void* p)
+    {
+	delete [] static_cast<BoundingBox*>(p);
+    }
+
+
     void deleteSink(void* p)
     {
 	delete static_cast<Sink*>(p);
@@ -275,6 +327,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: exchangers.cc,v 1.1 2004/05/11 00:51:50 tan2 Exp $
+// $Id: exchangers.cc,v 1.2 2004/07/22 04:11:42 tan2 Exp $
 
 // End of file

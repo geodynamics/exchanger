@@ -21,6 +21,7 @@ PROJ_SRCS = \
 	Boundary.cc \
 	BoundedBox.cc \
 	BoundedMesh.cc \
+	BoundingBox.cc \
 	Convertor.cc \
 	Inlet.cc \
 	Interpolator.cc \
@@ -39,6 +40,7 @@ EXPORT_HEADERS = \
 	Boundary.h \
 	BoundedBox.h \
 	BoundedMesh.h \
+	BoundingBox.h \
 	CartesianCoord.h \
 	Convertor.h \
 	DIM.h \
@@ -62,6 +64,6 @@ all: $(PROJ_LIB) export-headers
 
 
 # version
-# $Id: Make.mm,v 1.8 2004/07/02 19:46:23 tan2 Exp $
+# $Id: Make.mm,v 1.9 2004/07/22 04:11:42 tan2 Exp $
 
 # End of file

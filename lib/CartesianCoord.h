@@ -12,6 +12,7 @@
 
 #include "Array2D.h"
 #include "BoundedBox.h"
+#include "BoundingBox.h"
 #include "DIM.h"
 
 namespace Exchanger {
@@ -27,12 +28,14 @@ namespace Exchanger {
 
 	// Transform to cartesian coordinate system from spherical system
 	virtual void coordinate(BoundedBox& bbox) const = 0;
+	virtual void coordinate(BoundingBox& bbox) const = 0;
 	virtual void coordinate(Array2D<double,DIM>& X) const = 0;
 	virtual void vector(Array2D<double,DIM>& V,
 			    const Array2D<double,DIM>& X) const = 0;
 
 	// Transform to spherical coordinate system from cartesian system
 	virtual void xcoordinate(BoundedBox& bbox) const = 0;
+	virtual void xcoordinate(BoundingBox& bbox) const = 0;
 	virtual void xcoordinate(Array2D<double,DIM>& X) const = 0;
 	virtual void xvector(Array2D<double,DIM>& V,
 			     const Array2D<double,DIM>& X) const = 0;
@@ -51,6 +54,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: CartesianCoord.h,v 1.2 2004/05/08 08:13:16 tan2 Exp $
+// $Id: CartesianCoord.h,v 1.3 2004/07/22 04:11:42 tan2 Exp $
 
 // End of file

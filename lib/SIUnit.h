@@ -15,6 +15,7 @@
 
 #include "Array2D.h"
 #include "BoundedBox.h"
+#include "BoundingBox.h"
 #include "DIM.h"
 
 
@@ -37,6 +38,7 @@ namespace Exchanger {
 
 	// dimensionalize
 	void coordinate(BoundedBox& bbox) const;
+	void coordinate(BoundingBox& bbox) const;
 	void coordinate(Array2D<double,DIM>& X) const;
 	void temperature(Array2D<double,1>& T) const;
 	void time(double& t) const;
@@ -45,6 +47,7 @@ namespace Exchanger {
 
 	// non-dimensionalize
 	void xcoordinate(BoundedBox& bbox) const;
+	void xcoordinate(BoundingBox& bbox) const;
 	void xcoordinate(Array2D<double,DIM>& X) const;
 	void xtemperature(Array2D<double,1>& T) const;
 	void xtime(double& t) const;
@@ -65,6 +68,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: SIUnit.h,v 1.2 2004/05/08 08:13:16 tan2 Exp $
+// $Id: SIUnit.h,v 1.3 2004/07/22 04:11:42 tan2 Exp $
 
 // End of file

@@ -17,6 +17,12 @@ extern "C"
 PyObject * PyExchanger_exchangeBoundedBox(PyObject *, PyObject *);
 
 
+extern char PyExchanger_exchangeBoundingBox__name__[];
+extern char PyExchanger_exchangeBoundingBox__doc__[];
+extern "C"
+PyObject * PyExchanger_exchangeBoundingBox(PyObject *, PyObject *);
+
+
 extern char PyExchanger_exchangeSignal__name__[];
 extern char PyExchanger_exchangeSignal__doc__[];
 extern "C"
@@ -62,6 +68,6 @@ PyObject * PyExchanger_Sink_create(PyObject *, PyObject *);
 #endif
 
 // version
-// $Id: exchangers.h,v 1.1 2004/05/11 00:51:50 tan2 Exp $
+// $Id: exchangers.h,v 1.2 2004/07/22 04:11:42 tan2 Exp $
 
 // End of file

@@ -9,7 +9,6 @@
 
 #include <portinfo>
 #include <stdexcept>
-#include "journal/journal.h"
 #include "SIUnit.h"
 
 
@@ -25,6 +24,13 @@ namespace Exchanger {
 
 
     void SIUnit::coordinate(BoundedBox& bbox) const
+    {
+	for(int i=0; i<2; ++i)
+	    bbox[i][DIM-1] *= length_factor;
+    }
+
+
+    void SIUnit::coordinate(BoundingBox& bbox) const
     {
 	for(int i=0; i<2; ++i)
 	    bbox[i][DIM-1] *= length_factor;
@@ -76,6 +82,13 @@ namespace Exchanger {
     }
 
 
+    void SIUnit::xcoordinate(BoundingBox& bbox) const
+    {
+	for(int i=0; i<2; ++i)
+	    bbox[i][DIM-1] /= length_factor;
+    }
+
+
     void SIUnit::xcoordinate(Array2D<double,DIM>& X) const
     {
 	for(int i=0; i<X.size(); ++i)
@@ -118,6 +131,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: SIUnit.cc,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: SIUnit.cc,v 1.2 2004/07/22 04:11:42 tan2 Exp $
 
 // End of file
