@@ -21,9 +21,9 @@ namespace Exchanger {
     Array2D<T,N>::Array2D() :
 	a_()
     {
-	journal::debug_t debug("Array2D");
-	debug << journal::loc(__HERE__)
-	      << "in Array2D<" << N << ">.c'tor()" << journal::end;
+// 	journal::debug_t debug("Array2D");
+// 	debug << journal::loc(__HERE__)
+// 	      << "in Array2D<" << N << ">.c'tor()" << journal::end;
     }
 
 
@@ -31,9 +31,9 @@ namespace Exchanger {
     Array2D<T,N>::Array2D(int n) :
 	a_(n*N)
     {
-	journal::debug_t debug("Array2D");
-	debug << journal::loc(__HERE__)
-	      << "in Array2D<" << N << ">.c'tor(int)" << journal::end;
+// 	journal::debug_t debug("Array2D");
+// 	debug << journal::loc(__HERE__)
+// 	      << "in Array2D<" << N << ">.c'tor(int)" << journal::end;
     }
 
 
@@ -41,9 +41,9 @@ namespace Exchanger {
     Array2D<T,N>::Array2D(int n, const T& val) :
 	a_(n*N, val)
     {
-	journal::debug_t debug("Array2D");
-	debug << journal::loc(__HERE__)
-	      << "in Array2D<" << N << ">.c'tor(int,T)" << journal::end;
+// 	journal::debug_t debug("Array2D");
+// 	debug << journal::loc(__HERE__)
+// 	      << "in Array2D<" << N << ">.c'tor(int,T)" << journal::end;
     }
 
 
@@ -51,27 +51,27 @@ namespace Exchanger {
     Array2D<T,N>::Array2D(const Array2D<T,N>& rhs) :
 	a_(rhs.a_)
     {
-	journal::debug_t debug("Array2D");
-	debug << journal::loc(__HERE__)
-	      << "in Array2D<" << N << ">.c'tor(Array2D)" << journal::end;
+// 	journal::debug_t debug("Array2D");
+// 	debug << journal::loc(__HERE__)
+// 	      << "in Array2D<" << N << ">.c'tor(Array2D)" << journal::end;
     }
 
 
     template <class T, int N>
     Array2D<T,N>::~Array2D()
     {
-	journal::debug_t debug("Array2D");
-	debug << journal::loc(__HERE__)
-	      << "in Array2D<" << N << ">.d'tor()" << journal::end;
+// 	journal::debug_t debug("Array2D");
+// 	debug << journal::loc(__HERE__)
+// 	      << "in Array2D<" << N << ">.d'tor()" << journal::end;
     }
 
 
     template <class T, int N>
     Array2D<T,N>& Array2D<T,N>::operator=(const Array2D<T,N>& rhs)
     {
-	journal::debug_t debug("Array2D");
-	debug << journal::loc(__HERE__)
-	      << "in Array2D<" << N << ">.operator=" << journal::end;
+// 	journal::debug_t debug("Array2D");
+// 	debug << journal::loc(__HERE__)
+// 	      << "in Array2D<" << N << ">.operator=" << journal::end;
 
 	if(this != &rhs)
 	    a_ = rhs.a_;
@@ -82,9 +82,9 @@ namespace Exchanger {
     template <class T, int N>
     void Array2D<T,N>::swap(Array2D<T,N>& rhs)
     {
-	journal::debug_t debug("Array2D");
-	debug << journal::loc(__HERE__)
-	      << "in Array2D<" << N << ">.swap" << journal::end;
+// 	journal::debug_t debug("Array2D");
+// 	debug << journal::loc(__HERE__)
+// 	      << "in Array2D<" << N << ">.swap" << journal::end;
 
 	if(this != &rhs)
 	    a_.swap(rhs.a_);
@@ -94,9 +94,9 @@ namespace Exchanger {
     template <class T, int N>
     void Array2D<T,N>::reserve(int n)
     {
-	journal::debug_t debug("Array2D");
-	debug << journal::loc(__HERE__)
-	      << "in Array2D<" << N << ">.reserve" << journal::end;
+// 	journal::debug_t debug("Array2D");
+// 	debug << journal::loc(__HERE__)
+// 	      << "in Array2D<" << N << ">.reserve" << journal::end;
 	a_.reserve(N*n);
     }
 
@@ -104,9 +104,9 @@ namespace Exchanger {
     template <class T, int N>
     void Array2D<T,N>::resize(int n, T val)
     {
-	journal::debug_t debug("Array2D");
-	debug << journal::loc(__HERE__)
-	      << "in Array2D<" << N << ">.resize" << journal::end;
+// 	journal::debug_t debug("Array2D");
+// 	debug << journal::loc(__HERE__)
+// 	      << "in Array2D<" << N << ">.resize" << journal::end;
 	a_.resize(N*n, val);
     }
 
@@ -114,9 +114,9 @@ namespace Exchanger {
     template <class T, int N>
     void Array2D<T,N>::shrink()
     {
-	journal::debug_t debug("Array2D");
-	debug << journal::loc(__HERE__)
-	      << "in Array2D<" << N << ">.shrink" << journal::end;
+// 	journal::debug_t debug("Array2D");
+// 	debug << journal::loc(__HERE__)
+// 	      << "in Array2D<" << N << ">.shrink" << journal::end;
 	std::vector<T>(a_).swap(a_);
     }
 
