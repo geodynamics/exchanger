@@ -36,7 +36,7 @@ namespace Exchanger {
 	recvMesh(mesh, mybbox);
 	if(isOverlapped(mesh.bbox(), mybbox)) {
 	    createInterpolator(mesh);
-	    meshNode_.print("meshNode");
+	    meshNode_.print("Exchanger-Source-meshNode");
 	}
 	sendMeshNode();
 	initX(mesh);
@@ -84,6 +84,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: Source.cc,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: Source.cc,v 1.2 2004/05/08 08:59:16 tan2 Exp $
 
 // End of file

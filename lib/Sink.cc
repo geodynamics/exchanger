@@ -71,7 +71,7 @@ void Sink::recvMeshNode()
     meshNode_.resize(beginSrcNodes[sourceRanks.size()], numMeshNodes);
 
     recv(meshNode_);
-    meshNode_.print("meshNode_recv");
+    meshNode_.print("Exchanger-Sink-meshNode");
 
     testMeshNode();
 }
@@ -152,6 +152,6 @@ void Sink::initX(const BoundedMesh& mesh)
 }
 
 // version
-// $Id: Sink.cc,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: Sink.cc,v 1.2 2004/05/08 08:59:16 tan2 Exp $
 
 // End of file

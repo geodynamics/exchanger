@@ -29,7 +29,7 @@ namespace Exchanger {
 	BoundedMesh::broadcast(comm, broadcaster);
 
 	normal_.broadcast(comm, broadcaster);
-	normal_.print("normal_recv");
+	normal_.print("Exchanger-Boundary-normal_recv");
     }
 
 
@@ -64,6 +64,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: Boundary.cc,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: Boundary.cc,v 1.2 2004/05/08 08:59:16 tan2 Exp $
 
 // End of file
