@@ -9,7 +9,6 @@
 PROJECT = Exchanger
 PACKAGE = pyre
 
-PROJ_TMPDIR = $(BLD_TMPDIR)/$(PROJECT)/$(PACKAGE)
 
 #--------------------------------------------------------------------------
 #
@@ -33,9 +32,9 @@ EXPORT_PYTHON_MODULES = \
 	Layout.py \
 
 
-export:: export-package-python-modules
+export:: export-python-modules
 
 # version
-# $Id: Make.mm,v 1.1 2004/05/18 23:12:26 tan2 Exp $
+# $Id: Make.mm,v 1.2 2004/06/11 17:20:55 tan2 Exp $
 
 # End of file
