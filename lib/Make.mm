@@ -32,8 +32,8 @@ PROJ_SRCS = \
 	Source.cc \
 	Spherical2Cartesian.cc \
 	Utility.cc \
-	inlets_outlets.cc \
-	util.cc \
+	exchangers.cc \
+
 
 EXPORT_HEADERS = \
 	Array2D.h \
@@ -54,8 +54,7 @@ EXPORT_HEADERS = \
 	Utility.h \
 	UtilTemplate.h \
 	UtilTemplate.cc \
-	inlets_outlets.h \
-	util.h \
+	exchangers.h \
 
 
 EXPORT_LIBS = $(PROJ_LIB)
@@ -66,6 +65,6 @@ export:: release-headers export-libraries
 
 
 # version
-# $Id: Make.mm,v 1.3 2004/05/08 08:48:50 tan2 Exp $
+# $Id: Make.mm,v 1.4 2004/05/11 00:51:50 tan2 Exp $
 
 # End of file
