@@ -10,7 +10,7 @@
 PROJECT = Exchanger
 PACKAGE = Exchangermodule
 
-PROJ_LIB = libExchanger.$(EXT_LIB)
+PROJ_LIB = $(PROJ_LIBDIR)/libExchanger.$(EXT_LIB)
 
 PROJ_CXX_SRCLIB = \
         -ljournal \
@@ -57,13 +57,11 @@ EXPORT_HEADERS = \
 
 EXPORT_LIBS = $(PROJ_LIB)
 
-all: $(PROJ_LIB) export
+all: $(PROJ_LIB) 
 
-export:: export-headers 
-#export:: release-headers release-libraries
 
 
 # version
-# $Id: Make.mm,v 1.6 2004/06/11 19:02:56 tan2 Exp $
+# $Id: Make.mm,v 1.7 2004/06/29 17:30:54 tan2 Exp $
 
 # End of file
