@@ -147,9 +147,9 @@ namespace Exchanger {
     {
 #ifdef DEBUG
 	if (n > size()) {
-	    journal::firewall_t firewall("Array2D");
-	    firewall << journal::loc(__HERE__)
-		     << "Array2D: assignment out of range" << journal::end;
+ 	    journal::firewall_t firewall("Array2D");
+ 	    firewall << journal::loc(__HERE__)
+ 		     << "Array2D: assignment out of range" << journal::end;
 	    throw std::out_of_range("Array2D");
 	}
 #endif
@@ -161,23 +161,32 @@ namespace Exchanger {
     void Array2D<T,N>::push_back(const std::vector<T>& val)
     {
 #ifdef DEBUG
-	if (val.size() != N) {
-	    journal::firewall_t firewall("Array2D");
-	    firewall << journal::loc(__HERE__)
-		     << "Array2D: push_back element out of range" << journal::end;
-	    throw std::out_of_range("Array2D");
+	if(val.size() != N) {
+ 	    journal::firewall_t firewall("Array2D");
+ 	    firewall << journal::loc(__HERE__)
+ 		     << "Array2D: push_back incorrect size of vector"
+		     << journal::end;
+	    throw std::invalid_argument("Array2D");
 	}
 #endif
-	reserve(size()+1);
-	copy(val.begin(), val.end(), back_inserter(a_));
+	if(capacity() == size()) {
+	    reserve(size()*1.5);
+	    copy(val.begin(), val.end(), back_inserter(a_));
+	} else
+	    for(int i=0; i<N; ++i)
+		a_.push_back(val[i]);
     }
 
 
     template <class T, int N>
     void Array2D<T,N>::push_back(const T& val)
     {
-	reserve(size()+1);
-	fill_n(back_inserter(a_), N, val);
+	if(capacity() == size()) {
+	    reserve(size()*1.5);
+	    fill_n(back_inserter(a_), N, val);
+	} else
+	    for(int i=0; i<N; ++i)
+		a_.push_back(val);
     }
 
 
@@ -346,6 +355,7 @@ namespace Exchanger {
     template <class T, int N>
     void Array2D<T,N>::print(const std::string& prefix) const
     {
+#ifdef DEBUG
 	journal::info_t info(prefix);
 	info << "  " << prefix << ":  addr = " << &a_;
 
@@ -355,6 +365,7 @@ namespace Exchanger {
 		info << a_[n*N + j] << "  ";
 	}
 	info << journal::newline << journal::end;
+#endif
     }
 
 
@@ -364,9 +375,9 @@ namespace Exchanger {
     {
 #ifdef DEBUG
 	if (index >= N) {
-	    journal::firewall_t firewall("Array2D");
-	    firewall << journal::loc(__HERE__)
-		     << "Array2D: first index out of range" << journal::end;
+ 	    journal::firewall_t firewall("Array2D");
+ 	    firewall << journal::loc(__HERE__)
+ 		     << "Array2D: first index out of range" << journal::end;
 	    throw std::out_of_range("Array2D");
 	}
 #endif
@@ -380,9 +391,9 @@ namespace Exchanger {
     {
 #ifdef DEBUG
 	if (index >= N) {
-	    journal::firewall_t firewall("Array2D");
-	    firewall << journal::loc(__HERE__)
-		     << "Array2D: first index out of range" << journal::end;
+ 	    journal::firewall_t firewall("Array2D");
+ 	    firewall << journal::loc(__HERE__)
+ 		     << "Array2D: first index out of range" << journal::end;
 	    throw std::out_of_range("Array2D");
 	}
 #endif
@@ -405,9 +416,9 @@ namespace Exchanger {
     {
 #ifdef DEBUG
 	if (index*N+n_ >= p_.size()) {
-	    journal::firewall_t firewall("Array2D");
-	    firewall << journal::loc(__HERE__)
-		     << "Array2D: second index out of range" << journal::end;
+ 	    journal::firewall_t firewall("Array2D");
+ 	    firewall << journal::loc(__HERE__)
+ 		     << "Array2D: second index out of range" << journal::end;
 	    throw std::out_of_range("Array2D");
 	}
 #endif
@@ -420,9 +431,9 @@ namespace Exchanger {
     {
 #ifdef DEBUG
 	if (index*N+n_ >= p_.size()) {
-	    journal::firewall_t firewall("Array2D");
-	    firewall << journal::loc(__HERE__)
-		     << "Array2D: second index out of range" << journal::end;
+ 	    journal::firewall_t firewall("Array2D");
+ 	    firewall << journal::loc(__HERE__)
+ 		     << "Array2D: second index out of range" << journal::end;
 	    throw std::out_of_range("Array2D");
 	}
 #endif
@@ -434,6 +445,6 @@ namespace Exchanger {
 
 
 // version
-// $$
+// $Id: Array2D.cc,v 1.3 2004/06/02 19:34:11 tan2 Exp $
 
 // End of file
