@@ -8,6 +8,8 @@
 //
 
 #include <portinfo>
+#include <stdexcept>
+#include "journal/journal.h"
 #include "CartesianCoord.h"
 #include "SIUnit.h"
 #include "Convertor.h"
@@ -29,13 +31,14 @@ namespace Exchanger {
 
 	if(!handle) {
 	    if(!inited) {
-		journal::firewall_t firewall("Convertor");
-		firewall << journal::loc(__HERE__)
-			 << "instance() is called before init()" << journal::end;
+ 		journal::firewall_t firewall("Convertor");
+ 		firewall << journal::loc(__HERE__)
+ 			 << "instance() is called before init()" << journal::end;
+		throw std::domain_error("Convertor");
 	    }
 
-	    journal::debug_t debug("Exchanger");
-	    debug << journal::loc(__HERE__) << journal::end;
+ 	    journal::debug_t debug("Exchanger");
+ 	    debug << journal::loc(__HERE__) << journal::end;
 
 	    handle = new Convertor();
 	}
@@ -149,6 +152,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: Convertor.cc,v 1.2 2004/05/08 08:50:44 tan2 Exp $
+// $Id: Convertor.cc,v 1.3 2004/06/02 19:52:19 tan2 Exp $
 
 // End of file
