@@ -40,7 +40,10 @@ EXPORT_HEADERS = \
 	Array2D.cc \
 	Boundary.h \
 	BoundedBox.h \
+	BoundedMesh.h \
+	CartesianCoord.h \
 	Convertor.h \
+	DIM.h \
 	Inlet.h \
 	Interpolator.h \
 	Outlet.h \
@@ -63,6 +66,6 @@ export:: release-headers export-libraries
 
 
 # version
-# $Id: Make.mm,v 1.2 2004/05/08 07:02:44 tan2 Exp $
+# $Id: Make.mm,v 1.3 2004/05/08 08:48:50 tan2 Exp $
 
 # End of file
