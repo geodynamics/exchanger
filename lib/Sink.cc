@@ -38,7 +38,7 @@ namespace Exchanger {
 	sendMesh(mesh);
 
 	recvMeshNode();
-	testMeshNode();
+	testMeshNode(mesh);
 
 	initX(mesh);
     }
@@ -75,8 +75,8 @@ namespace Exchanger {
 	recvSourceSize();
 	sumSourceSize();
 
-	// fill meshNode_ with value "numMeshNodes", which is an invalid node #
-	meshNode_.resize(beginSrcNodes[sourceRanks.size()], numMeshNodes);
+	// fill meshNode_ with -1, which is an invalid node #
+	meshNode_.resize(beginSrcNodes[sourceRanks.size()], -1);
 
 	recv(meshNode_);
 	meshNode_.print("Exchanger-Sink-meshNode");
@@ -106,7 +106,7 @@ namespace Exchanger {
     }
 
 
-    void Sink::testMeshNode() const
+    void Sink::testMeshNode(const BoundedMesh& mesh) const
     {
 	journal::debug_t debug("Exchanger");
 	debug << journal::loc(__HERE__) << journal::end;
@@ -114,7 +114,7 @@ namespace Exchanger {
 	// **** test #1 ****
 	// check missing meshNode_
 
-	if(std::find(meshNode_.begin(), meshNode_.end(), numMeshNodes)
+	if(std::find(meshNode_.begin(), meshNode_.end(), -1)
 	   != meshNode_.end()) {
  	    journal::firewall_t firewall("Sink");
  	    firewall << journal::loc(__HERE__)
@@ -145,14 +145,22 @@ namespace Exchanger {
 
 	// does meshNode_ contains node [0,mesh.size()) ?
 	std::vector<int>::iterator start = a.begin();
+	std::vector<int>::iterator old = start;
 	for(int index=0; index<numMeshNodes; ++index) {
 	    start = std::find(start, a.end(), index);
 	    if(start == a.end()) {
  		journal::warning_t warning("Sink");
  		warning << journal::loc(__HERE__)
-			<< "mesh node #" << index << " not interpolated"
-			<< journal::end;
+			<< "mesh node #" << index << '(';
+
+		for(int d=0; d<DIM; ++d)
+		    warning << mesh.X(d,index) << ' ';
+
+		warning << ") not interpolated"	<< journal::end;
+		start = old;
 	    }
+	    else
+		old = start;
 	}
     }
 
@@ -171,6 +179,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: Sink.cc,v 1.6 2004/07/02 01:05:01 tan2 Exp $
+// $Id: Sink.cc,v 1.7 2004/07/02 19:03:05 tan2 Exp $
 
 // End of file

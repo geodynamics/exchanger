@@ -53,7 +53,7 @@ namespace Exchanger {
 	void recvMeshNode();
 	void recvSourceSize();
 	void sumSourceSize();
-	void testMeshNode() const;
+	void testMeshNode(const BoundedMesh& mesh) const;
 	void initX(const BoundedMesh& mesh);
 
     };
@@ -122,6 +122,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: Sink.h,v 1.2 2004/05/09 20:59:52 tan2 Exp $
+// $Id: Sink.h,v 1.3 2004/07/02 19:03:05 tan2 Exp $
 
 // End of file
