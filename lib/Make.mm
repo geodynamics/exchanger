@@ -15,7 +15,8 @@ PROJ_LIB = $(PROJ_LIBDIR)/libExchanger.$(EXT_LIB)
 PROJ_CXX_SRCLIB = \
         -ljournal \
 
-EXTERNAL_INCLUDES += $(PYTHON_INCDIR) $(PYTHIA_DIR)/include
+EXTERNAL_INCLUDES += $(PYTHON_INCDIR) $(PYTHIA_DIR)/include $(PYTHIA_INCDIR)
+EXTERNAL_LIBPATH += -L$(PYTHIA_LIBDIR)
 
 PROJ_SRCS = \
 	Boundary.cc \
@@ -64,6 +65,6 @@ all: $(PROJ_LIB) export-headers
 
 
 # version
-# $Id: Make.mm,v 1.9 2004/07/22 04:11:42 tan2 Exp $
+# $Id: Make.mm,v 1.10 2004/11/16 11:45:03 steve Exp $
 
 # End of file
