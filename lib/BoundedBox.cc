@@ -35,6 +35,11 @@ namespace Exchanger {
 	   (lhs[0][1] <= rhs[0][1])&& (lhs[1][1] >= rhs[1][1])&&
 	   (lhs[0][2] <= rhs[0][2])&& (lhs[1][2] >= rhs[1][2]))
 	    return true;
+	// more general critetion
+	else if( (lhs[0][0]<=rhs[1][0] && lhs[1][0]>=rhs[0][0]) &&
+		 (lhs[0][1]<=rhs[1][1] && lhs[1][1]>=rhs[0][1]) &&
+		 (lhs[0][2]<=rhs[1][2] && lhs[1][2]>=rhs[0][2]) )
+		return true;
 
 	return false;
     }
@@ -58,6 +63,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: BoundedBox.cc,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: BoundedBox.cc,v 1.2 2004/05/18 19:14:29 ces74 Exp $
 
 // End of file
