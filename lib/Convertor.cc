@@ -7,7 +7,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#include <portinfo>
 #include <stdexcept>
 #include "journal/journal.h"
 #include "CartesianCoord.h"
@@ -182,6 +181,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: Convertor.cc,v 1.5 2005/01/29 00:05:43 ces74 Exp $
+// $Id: Convertor.cc,v 1.6 2005/03/11 22:42:43 steve Exp $
 
 // End of file

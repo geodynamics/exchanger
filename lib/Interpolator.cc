@@ -7,7 +7,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#include <portinfo>
 #include "Interpolator.h"
 
 namespace Exchanger {
@@ -28,6 +27,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: Interpolator.cc,v 1.2 2004/05/09 21:00:35 tan2 Exp $
+// $Id: Interpolator.cc,v 1.3 2005/03/11 22:42:43 steve Exp $
 
 // End of file

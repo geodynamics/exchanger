@@ -7,7 +7,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#include <portinfo>
 #include <stdexcept>
 #include "SIUnit.h"
 
@@ -147,6 +146,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: SIUnit.cc,v 1.3 2005/01/29 00:05:43 ces74 Exp $
+// $Id: SIUnit.cc,v 1.4 2005/03/11 22:42:43 steve Exp $
 
 // End of file

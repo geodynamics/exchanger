@@ -7,7 +7,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#include <portinfo>
 #include <vector>
 #include "BoundedBox.h"
 
@@ -63,6 +62,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: BoundedBox.cc,v 1.2 2004/05/18 19:14:29 ces74 Exp $
+// $Id: BoundedBox.cc,v 1.3 2005/03/11 22:42:42 steve Exp $
 
 // End of file

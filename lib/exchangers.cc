@@ -7,7 +7,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#include <portinfo>
 #include <Python.h>
 #include "mpi.h"
 #include "mpi/Communicator.h"
@@ -327,6 +326,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: exchangers.cc,v 1.2 2004/07/22 04:11:42 tan2 Exp $
+// $Id: exchangers.cc,v 1.3 2005/03/11 22:42:43 steve Exp $
 
 // End of file

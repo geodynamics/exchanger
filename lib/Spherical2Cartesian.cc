@@ -10,7 +10,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#include <portinfo>
 #include <stdexcept>
 #include <vector>
 #include "journal/journal.h"
@@ -446,6 +445,6 @@ namespace Exchanger {
 
 }
 // version
-// $Id: Spherical2Cartesian.cc,v 1.3 2005/01/29 00:05:43 ces74 Exp $
+// $Id: Spherical2Cartesian.cc,v 1.4 2005/03/11 22:42:43 steve Exp $
 
 // End of file

@@ -7,7 +7,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#include <portinfo>
 #include <algorithm>
 #include <iostream>
 #include <stdexcept>
@@ -445,6 +444,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: Array2D.cc,v 1.4 2004/06/09 18:00:18 tan2 Exp $
+// $Id: Array2D.cc,v 1.5 2005/03/11 22:42:42 steve Exp $
 
 // End of file

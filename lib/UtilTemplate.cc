@@ -7,7 +7,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#include <portinfo>
 #include "journal/journal.h"
 #include "Array2D.h"
 #include "Utility.h"
@@ -110,6 +109,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: UtilTemplate.cc,v 1.1 2004/05/08 01:51:14 tan2 Exp $
+// $Id: UtilTemplate.cc,v 1.2 2005/03/11 22:42:43 steve Exp $
 
 // End of file

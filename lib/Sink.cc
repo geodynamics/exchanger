@@ -7,7 +7,6 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#include <portinfo>
 #include <algorithm>
 #include <functional>
 #include <numeric>
@@ -179,6 +178,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: Sink.cc,v 1.7 2004/07/02 19:03:05 tan2 Exp $
+// $Id: Sink.cc,v 1.8 2005/03/11 22:42:43 steve Exp $
 
 // End of file
