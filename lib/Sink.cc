@@ -12,7 +12,6 @@
 #include <functional>
 #include <numeric>
 #include <stdexcept>
-#include "journal/journal.h"
 #include "BoundedMesh.h"
 #include "Sink.h"
 
@@ -24,6 +23,9 @@ namespace Exchanger {
 	beginSrcNodes(nsrc+1),
 	numMeshNodes(mesh.size())
     {
+	journal::debug_t debug("Exchanger");
+	debug << journal::loc(__HERE__) << journal::end;
+
 	checkCommSize(nsrc);
 
 	MPI_Comm_rank(comm, &me);
@@ -37,6 +39,8 @@ namespace Exchanger {
 
 	recvMeshNode();
 	initX(mesh);
+
+	testMeshNode();
     }
 
 
@@ -51,10 +55,10 @@ namespace Exchanger {
 	int size;
 	MPI_Comm_size(comm, &size);
 	if(size != nsrc + 1) {
-	    journal::firewall_t firewall("Sink");
-	    firewall << journal::loc(__HERE__)
-		     << "size of communicator != (numSrc + 1)" << journal::end;
-	    throw std::domain_error("size of communicator != (numSrc + 1)");
+ 	    journal::firewall_t firewall("Sink");
+ 	    firewall << journal::loc(__HERE__)
+ 		     << "size of communicator != (numSrc + 1)" << journal::end;
+	    throw std::domain_error("Sink");
 	}
     }
 
@@ -76,8 +80,6 @@ namespace Exchanger {
 
 	recv(meshNode_);
 	meshNode_.print("Exchanger-Sink-meshNode");
-
-	testMeshNode();
     }
 
 
@@ -93,31 +95,44 @@ namespace Exchanger {
 	partial_sum(numSrcNodes.begin(), numSrcNodes.end(),
 		    ++beginSrcNodes.begin());
 
-	journal::debug_t debug("Exchanger");
-	for(size_t i=0; i<sourceRanks.size(); i++) {
-	    debug << journal::loc(__HERE__)
-		  << " sourceRank = " << i << "  size = " << numSrcNodes[i]
-		  << "  begin = " << beginSrcNodes[i] << journal::newline;
-	}
-	debug << " total nodes = " << beginSrcNodes[sourceRanks.size()]
-	      << journal::end;
+ 	journal::debug_t debug("Exchanger");
+ 	for(size_t i=0; i<sourceRanks.size(); i++) {
+ 	    debug << journal::loc(__HERE__)
+ 		  << " sourceRank = " << i << "  size = " << numSrcNodes[i]
+ 		  << "  begin = " << beginSrcNodes[i] << journal::newline;
+ 	}
+ 	debug << " total nodes = " << beginSrcNodes[sourceRanks.size()]
+ 	      << journal::end;
     }
 
 
     void Sink::testMeshNode() const
     {
+	journal::debug_t debug("Exchanger");
+	debug << journal::loc(__HERE__) << journal::end;
+
 	// **** test #1 ****
 	// check missing meshNode_
 
 	if(std::find(meshNode_.begin(), meshNode_.end(), numMeshNodes)
 	   != meshNode_.end()) {
-	    journal::firewall_t firewall("Sink");
-	    firewall << journal::loc(__HERE__)
-		     << "some node in meshNode not mapped" << journal::end;
+ 	    journal::firewall_t firewall("Sink");
+ 	    firewall << journal::loc(__HERE__)
+ 		     << "some node in meshNode not mapped" << journal::end;
 	    throw std::domain_error("Sink");
 	}
 
 	// **** test #2 ****
+	// check the size of meshNode
+	if(meshNode_.size() < numMeshNodes) {
+	    journal::warning_t warning("Sink");
+	    warning << journal::loc(__HERE__)
+		    << "size of meshNode (" << meshNode_.size() << ')'
+		    << " is less than numMeshNodes ("
+		    << numMeshNodes << ')' << journal::end;
+	}
+
+	// **** test #3 ****
 	// make sure that every mesh node is interpolated
 
 	// sort copy of meshNode_
@@ -133,10 +148,14 @@ namespace Exchanger {
 	for(int index=0; index<numMeshNodes; ++index) {
 	    start = std::find(start, a.end(), index);
 	    if(start == a.end()) {
-		journal::firewall_t firewall("Sink");
-		firewall << journal::loc(__HERE__)
-			 << "mesh node #" << index << " not interpolated" << journal::end;
-		throw std::domain_error("Sink");
+ 		journal::warning_t warning("Sink");
+ 		warning << journal::loc(__HERE__)
+			<< "mesh node #" << index << '(';
+
+		for(int d=0; d<DIM; ++d)
+		    warning << X_[d][index] << ' ';
+
+		warning << ") not interpolated" << journal::end;
 	    }
 	}
     }
@@ -144,6 +163,11 @@ namespace Exchanger {
 
     void Sink::initX(const BoundedMesh& mesh)
     {
+	journal::debug_t debug("Exchanger");
+	debug << "mesh.size = " << mesh.size() << ' '
+	      << "meshNode.size = " << meshNode_.size()
+	      << journal::end;
+
 	X_.resize(meshNode_.size());
 
 	for(int i=0; i<X_.size(); ++i) {
@@ -156,6 +180,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: Sink.cc,v 1.3 2004/05/09 21:30:37 tan2 Exp $
+// $Id: Sink.cc,v 1.4 2004/07/02 00:37:22 tan2 Exp $
 
 // End of file
