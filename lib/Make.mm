@@ -8,9 +8,12 @@
 #
 
 PROJECT = Exchanger
-PACKAGE = Exchangermodule
+PACKAGE = libExchanger
 
-PROJ_LIB = $(PROJ_LIBDIR)/libExchanger.$(EXT_LIB)
+PROJ_SAR = $(BLD_LIBDIR)/$(PACKAGE).$(EXT_SAR)
+PROJ_DLL = $(BLD_LIBDIR)/$(PACKAGE).$(EXT_SO)
+PROJ_TMPDIR = $(BLD_TMPDIR)/$(PROJECT)/$(PACKAGE)
+PROJ_CLEAN += $(PROJ_DLL) $(PROJ_SAR)
 
 PROJ_CXX_SRCLIB = \
         -ljournal \
@@ -58,13 +61,14 @@ EXPORT_HEADERS = \
 	exchangers.h \
 
 
-EXPORT_LIBS = $(PROJ_LIB)
+EXPORT_LIBS = $(PROJ_SAR)
+EXPORT_BINS = $(PROJ_DLL)
 
-all: $(PROJ_LIB) export-headers
+all: $(PROJ_SAR) export
 
-
+export:: export-headers export-libraries export-binaries
 
 # version
-# $Id: Make.mm,v 1.10 2004/11/16 11:45:03 steve Exp $
+# $Id: Make.mm,v 1.11 2005/04/11 11:17:12 steve Exp $
 
 # End of file
