@@ -12,6 +12,7 @@
 
 #include <stdexcept>
 #include <vector>
+#include <cmath>
 #include "journal/journal.h"
 #include "Spherical2Cartesian.h"
 
@@ -445,6 +446,6 @@ namespace Exchanger {
 
 }
 // version
-// $Id: Spherical2Cartesian.cc,v 1.4 2005/03/11 22:42:43 steve Exp $
+// $Id: Spherical2Cartesian.cc,v 1.5 2005/05/19 22:40:20 leif Exp $
 
 // End of file
