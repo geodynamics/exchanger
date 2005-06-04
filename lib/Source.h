@@ -11,7 +11,7 @@
 #define pyExchanger_Source_h
 
 #include <vector>
-#include "journal/journal.h"
+#include "journal/diagnostics.h"
 #include "mpi.h"
 #include "Array2D.h"
 #include "BoundedBox.h"
@@ -123,6 +123,6 @@ namespace Exchanger {
 #endif
 
 // version
-// $Id: Source.h,v 1.2 2004/06/02 20:01:58 tan2 Exp $
+// $Id: Source.h,v 1.3 2005/06/03 21:51:47 leif Exp $
 
 // End of file

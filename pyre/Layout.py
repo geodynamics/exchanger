@@ -41,7 +41,7 @@ class Layout(Component):
 
     def verify(self, application):
         size = len(self.inventory.fine) + len(self.inventory.coarse)
-        nodes = application.inventory.staging.inventory.nodes
+        nodes = application.inventory.launcher.inventory.nodes
 
         if nodes != size:
             import journal
@@ -78,17 +78,15 @@ class Layout(Component):
 
     class Inventory(Component.Inventory):
 
-        import pyre.properties
+        import pyre.inventory
 
-        inventory = [
 
-            pyre.properties.sequence("coarse", [0]),
-            pyre.properties.sequence("fine", [1]),
+        coarse = pyre.inventory.slice("coarse", default=[0])
+        fine = pyre.inventory.slice("fine", default=[1])
 
-            ]
 
 
 # version
-__id__ = "$Id: Layout.py,v 1.1 2004/05/18 23:12:26 tan2 Exp $"
+__id__ = "$Id: Layout.py,v 1.2 2005/06/03 21:51:47 leif Exp $"
 
 # End of file

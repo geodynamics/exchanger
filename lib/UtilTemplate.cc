@@ -7,7 +7,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#include "journal/journal.h"
+#include "journal/diagnostics.h"
 #include "Array2D.h"
 #include "Utility.h"
 
@@ -100,8 +100,8 @@ namespace Exchanger {
 		return MPI_CHAR;
 
 	    journal::firewall_t firewall("UtilTemplate");
-	    firewall << journal::loc(__HERE__)
-		     << "unexpected datatype" << journal::end;
+	    firewall << journal::at(__HERE__)
+		     << "unexpected datatype" << journal::endl;
 	    throw std::domain_error("unexpected datatype");
 	}
 
@@ -109,6 +109,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: UtilTemplate.cc,v 1.2 2005/03/11 22:42:43 steve Exp $
+// $Id: UtilTemplate.cc,v 1.3 2005/06/03 21:51:47 leif Exp $
 
 // End of file

@@ -23,7 +23,7 @@ namespace Exchanger {
 	numMeshNodes(mesh.size())
     {
 	journal::debug_t debug("Exchanger");
-	debug << journal::loc(__HERE__) << journal::end;
+	debug << journal::at(__HERE__) << journal::endl;
 
 	checkCommSize(nsrc);
 
@@ -55,8 +55,8 @@ namespace Exchanger {
 	MPI_Comm_size(comm, &size);
 	if(size != nsrc + 1) {
  	    journal::firewall_t firewall("Sink");
- 	    firewall << journal::loc(__HERE__)
- 		     << "size of communicator != (numSrc + 1)" << journal::end;
+ 	    firewall << journal::at(__HERE__)
+ 		     << "size of communicator != (numSrc + 1)" << journal::endl;
 	    throw std::domain_error("Sink");
 	}
     }
@@ -96,19 +96,19 @@ namespace Exchanger {
 
  	journal::debug_t debug("Exchanger");
  	for(size_t i=0; i<sourceRanks.size(); i++) {
- 	    debug << journal::loc(__HERE__)
+ 	    debug << journal::at(__HERE__)
  		  << " sourceRank = " << i << "  size = " << numSrcNodes[i]
  		  << "  begin = " << beginSrcNodes[i] << journal::newline;
  	}
  	debug << " total nodes = " << beginSrcNodes[sourceRanks.size()]
- 	      << journal::end;
+ 	      << journal::endl;
     }
 
 
     void Sink::testMeshNode(const BoundedMesh& mesh) const
     {
 	journal::debug_t debug("Exchanger");
-	debug << journal::loc(__HERE__) << journal::end;
+	debug << journal::at(__HERE__) << journal::endl;
 
 	// **** test #1 ****
 	// check missing meshNode_
@@ -116,8 +116,8 @@ namespace Exchanger {
 	if(std::find(meshNode_.begin(), meshNode_.end(), -1)
 	   != meshNode_.end()) {
  	    journal::firewall_t firewall("Sink");
- 	    firewall << journal::loc(__HERE__)
- 		     << "some node in meshNode not mapped" << journal::end;
+ 	    firewall << journal::at(__HERE__)
+ 		     << "some node in meshNode not mapped" << journal::endl;
 	    throw std::domain_error("Sink");
 	}
 
@@ -125,10 +125,10 @@ namespace Exchanger {
 	// check the size of meshNode
 	if(meshNode_.size() < numMeshNodes) {
 	    journal::warning_t warning("Sink");
-	    warning << journal::loc(__HERE__)
+	    warning << journal::at(__HERE__)
 		    << "size of meshNode (" << meshNode_.size() << ')'
 		    << " is less than numMeshNodes ("
-		    << numMeshNodes << ')' << journal::end;
+		    << numMeshNodes << ')' << journal::endl;
 	}
 
 	// **** test #3 ****
@@ -149,13 +149,13 @@ namespace Exchanger {
 	    start = std::find(start, a.end(), index);
 	    if(start == a.end()) {
  		journal::warning_t warning("Sink");
- 		warning << journal::loc(__HERE__)
+ 		warning << journal::at(__HERE__)
 			<< "mesh node #" << index << '(';
 
 		for(int d=0; d<DIM; ++d)
 		    warning << mesh.X(d,index) << ' ';
 
-		warning << ") not interpolated"	<< journal::end;
+		warning << ") not interpolated"	<< journal::endl;
 		start = old;
 	    }
 	    else
@@ -178,6 +178,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: Sink.cc,v 1.8 2005/03/11 22:42:43 steve Exp $
+// $Id: Sink.cc,v 1.9 2005/06/03 21:51:47 leif Exp $
 
 // End of file

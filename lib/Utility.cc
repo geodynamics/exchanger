@@ -7,7 +7,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
-#include "journal/journal.h"
+#include "journal/diagnostics.h"
 #include "Utility.h"
 
 namespace Exchanger {
@@ -40,7 +40,7 @@ namespace Exchanger {
 	{
 	    if (result != MPI_SUCCESS) {
 		journal::error_t error("Exchanger-Utility");
-		error << journal::loc(__HERE__) << errmsg << journal::end;
+		error << journal::at(__HERE__) << errmsg << journal::endl;
 		throw result;
 	    }
 	}
@@ -50,6 +50,6 @@ namespace Exchanger {
 }
 
 // version
-// $Id: Utility.cc,v 1.2 2005/03/11 22:42:43 steve Exp $
+// $Id: Utility.cc,v 1.3 2005/06/03 21:51:47 leif Exp $
 
 // End of file

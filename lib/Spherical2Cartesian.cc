@@ -13,7 +13,7 @@
 #include <stdexcept>
 #include <vector>
 #include <cmath>
-#include "journal/journal.h"
+#include "journal/diagnostics.h"
 #include "Spherical2Cartesian.h"
 
 
@@ -164,8 +164,8 @@ namespace Exchanger {
 		// sanity check
 		if(V.size() != X.size()) {
 			journal::firewall_t firewall("Spherical2Cartesian");
-			firewall << journal::loc(__HERE__)
-					 << "size of vectors mismatch" << journal::end;
+			firewall << journal::at(__HERE__)
+					 << "size of vectors mismatch" << journal::endl;
 			throw std::out_of_range("Spherical2Cartesian");
 		}
 
@@ -198,8 +198,8 @@ namespace Exchanger {
 		// sanity check
 		if(S.size() != X.size()) {
 			journal::firewall_t firewall("Spherical2Cartesian");
-			firewall << journal::loc(__HERE__)
-					 << "size of vectors mismatch" << journal::end;
+			firewall << journal::at(__HERE__)
+					 << "size of vectors mismatch" << journal::endl;
 			throw std::out_of_range("Spherical2Cartesian");
 		}
 
@@ -358,8 +358,8 @@ namespace Exchanger {
 		// sanity check
 		if(V.size() != X.size()) {
 			journal::firewall_t firewall("Spherical2Cartesian");
-			firewall << journal::loc(__HERE__)
-					 << "size of vectors mismatch" << journal::end;
+			firewall << journal::at(__HERE__)
+					 << "size of vectors mismatch" << journal::endl;
 			throw std::out_of_range("Spherical2Cartesian");
 		}
 
@@ -391,8 +391,8 @@ namespace Exchanger {
 		// sanity check
 		if(S.size() != X.size()) {
 			journal::firewall_t firewall("Spherical2Cartesian");
-			firewall << journal::loc(__HERE__)
-					 << "size of vectors mismatch" << journal::end;
+			firewall << journal::at(__HERE__)
+					 << "size of vectors mismatch" << journal::endl;
 			throw std::out_of_range("Spherical2Cartesian");
 		}
 
@@ -446,6 +446,6 @@ namespace Exchanger {
 
 }
 // version
-// $Id: Spherical2Cartesian.cc,v 1.5 2005/05/19 22:40:20 leif Exp $
+// $Id: Spherical2Cartesian.cc,v 1.6 2005/06/03 21:51:47 leif Exp $
 
 // End of file

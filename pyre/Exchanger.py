@@ -87,16 +87,14 @@ class Exchanger(Component):
 
     class Inventory(Component.Inventory):
 
-        import pyre.properties as prop
+        import pyre.inventory as prop
 
 
-        inventory = [
 
-            ]
 
 
 
 # version
-__id__ = "$Id: Exchanger.py,v 1.1 2004/05/18 23:12:26 tan2 Exp $"
+__id__ = "$Id: Exchanger.py,v 1.2 2005/06/03 21:51:47 leif Exp $"
 
 # End of file

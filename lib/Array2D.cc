@@ -10,7 +10,7 @@
 #include <algorithm>
 #include <iostream>
 #include <stdexcept>
-#include "journal/journal.h"
+#include "journal/diagnostics.h"
 #include "UtilTemplate.h"
 #include "Utility.h"
 
@@ -444,6 +444,6 @@ namespace Exchanger {
 
 
 // version
-// $Id: Array2D.cc,v 1.5 2005/03/11 22:42:42 steve Exp $
+// $Id: Array2D.cc,v 1.6 2005/06/03 21:51:46 leif Exp $
 
 // End of file
