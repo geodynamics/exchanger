@@ -122,14 +122,14 @@ class CoupledApp(Application):
         import Exchanger
 
 
-        controller = pyre.inventory.facility("controller", default=Controller.controller())
-        coupler = pyre.inventory.facility("coupler", default=Coupler.coupler())
-        layout = pyre.inventory.facility("layout", default=Layout.layout())
+        controller = pyre.inventory.facility("controller", factory=Controller.controller)
+        coupler = pyre.inventory.facility("coupler", factory=Coupler.coupler)
+        layout = pyre.inventory.facility("layout", factory=Layout.layout)
 
-        coarse = SolverFacility("coarse", default=Solver())
-        fine = SolverFacility("fine", default=Solver())
-        cge = pyre.inventory.facility("cge", default=Exchanger.coarsegridexchanger())
-        fge = pyre.inventory.facility("fge", default=Exchanger.finegridexchanger())
+        coarse = pyre.inventory.facility("coarse", factory=Solver)
+        fine = pyre.inventory.facility("fine", factory=Solver)
+        cge = pyre.inventory.facility("cge", factory=Exchanger.coarsegridexchanger)
+        fge = pyre.inventory.facility("fge", factory=Exchanger.finegridexchanger)
 
         steps = pyre.inventory.int("steps", default=1)
 
@@ -145,6 +145,6 @@ if __name__ == "__main__":
 
 
 # version
-__id__ = "$Id: CoupledApp.py,v 1.2 2005/06/03 21:51:47 leif Exp $"
+__id__ = "$Id: CoupledApp.py,v 1.3 2005/06/08 01:55:34 leif Exp $"
 
 # End of file
