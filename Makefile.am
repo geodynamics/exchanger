@@ -10,7 +10,7 @@ EXTRA_DIST = \
 # lib
 CXX = $(MPICXX)
 CXXLD = @CXX@
-INCLUDES = -I$(PYTHIA_INCDIR) -I$(PYTHON_INCDIR) $(MPIINCLUDES)
+INCLUDES = $(PYTHIA_CPPFLAGS) -I$(PYTHON_INCDIR) $(MPIINCLUDES)
 pkginclude_HEADERS = \
 	lib/Array2D.h \
 	lib/Array2D.cc \
@@ -48,8 +48,8 @@ libExchanger_la_SOURCES =  \
 	lib/Source.cc \
 	lib/Spherical2Cartesian.cc \
 	lib/Utility.cc
-libExchanger_la_LDFLAGS = -release @VERSION@
-libExchanger_la_LIBADD = -L$(PYTHIA_LIBDIR) -l_mpimodule -ljournal
+libExchanger_la_LDFLAGS = -release $(PACKAGE_VERSION)
+libExchanger_la_LIBADD = -l_mpimodule -ljournal
 
 # pyre
 pkgpython_PYTHON = \
@@ -57,11 +57,23 @@ pkgpython_PYTHON = \
 	pyre/Coupler.py \
 	pyre/Exchanger.py \
 	pyre/Layout.py
+nodist_pkgpython_PYTHON = \
+	config.py \
+	__init__.py
+do_subst = sed \
+	-e 's|[@]PACKAGE_VERSION[@]|$(PACKAGE_VERSION)|g'
+config.py: $(top_builddir)/portinfo $(top_builddir)/Makefile
+	$(PYCONFIG) -h $(top_builddir)/portinfo -m $(top_builddir)/Makefile -o $@
+__init__.py: $(srcdir)/pyre/__init__.py.in
+	$(do_subst) < $(srcdir)/pyre/__init__.py.in > $@ || (rm -f $@ && exit 1)
+CLEANFILES = $(nodist_pkgpython_PYTHON)
+EXTRA_DIST += \
+	pyre/__init__.py.in
 
 # export
 export_incdir = $(top_builddir)/include
 BUILT_SOURCES = export-pkgincludeHEADERS
-CLEANFILES = export-pkgincludeHEADERS
+CLEANFILES += export-pkgincludeHEADERS
 clean-local: clean-pkgincludeHEADERS
 export-pkgincludeHEADERS: $(pkginclude_HEADERS)
 	$(MAKE) $(AM_MAKEFLAGS) includedir=$(export_incdir) install-pkgincludeHEADERS
