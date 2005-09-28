@@ -23,6 +23,7 @@ AC_PROG_LIBTOOL
 CIT_PROG_PYCONFIG
 
 # Checks for Python modules and packages.
+PYTHONPATH="${pythondir}${PYTHONPATH:+:${PYTHONPATH}}"; export PYTHONPATH
 CIT_PATH_PYTHIA([0.8], [mpi])
 
 # Checks for libraries.
