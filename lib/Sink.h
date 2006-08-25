@@ -65,8 +65,8 @@ namespace Exchanger {
 #ifdef DEBUG
 	if(size() != array.size()) {
 	    journal::firewall_t firewall("Exchanger-Sink");
-	    firewall << journal::loc(__HERE__)
-		     << "Sink: inconsistenet array size" << journal::end;
+	    firewall << journal::at(__HERE__)
+		     << "Sink: inconsistenet array size" << journal::endl;
 	    throw std::out_of_range("Sink");
 	}
 #endif
@@ -92,8 +92,8 @@ namespace Exchanger {
 #ifdef DEBUG
 	if(size() != array1.size() || size() != array2.size()) {
 	    journal::firewall_t firewall("Exchanger-Sink");
-	    firewall << journal::loc(__HERE__)
-		     << "Sink: inconsistenet array size" << journal::end;
+	    firewall << journal::at(__HERE__)
+		     << "Sink: inconsistenet array size" << journal::endl;
 	    throw std::out_of_range("Sink");
 	}
 #endif

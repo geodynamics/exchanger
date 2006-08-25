@@ -21,8 +21,8 @@ namespace Exchanger {
 	a_()
     {
 // 	journal::debug_t debug("Array2D");
-// 	debug << journal::loc(__HERE__)
-// 	      << "in Array2D<" << N << ">.c'tor()" << journal::end;
+// 	debug << journal::at(__HERE__)
+// 	      << "in Array2D<" << N << ">.c'tor()" << journal::endl;
     }
 
 
@@ -31,8 +31,8 @@ namespace Exchanger {
 	a_(n*N)
     {
 // 	journal::debug_t debug("Array2D");
-// 	debug << journal::loc(__HERE__)
-// 	      << "in Array2D<" << N << ">.c'tor(int)" << journal::end;
+// 	debug << journal::at(__HERE__)
+// 	      << "in Array2D<" << N << ">.c'tor(int)" << journal::endl;
     }
 
 
@@ -41,8 +41,8 @@ namespace Exchanger {
 	a_(n*N, val)
     {
 // 	journal::debug_t debug("Array2D");
-// 	debug << journal::loc(__HERE__)
-// 	      << "in Array2D<" << N << ">.c'tor(int,T)" << journal::end;
+// 	debug << journal::at(__HERE__)
+// 	      << "in Array2D<" << N << ">.c'tor(int,T)" << journal::endl;
     }
 
 
@@ -51,8 +51,8 @@ namespace Exchanger {
 	a_(rhs.a_)
     {
 // 	journal::debug_t debug("Array2D");
-// 	debug << journal::loc(__HERE__)
-// 	      << "in Array2D<" << N << ">.c'tor(Array2D)" << journal::end;
+// 	debug << journal::at(__HERE__)
+// 	      << "in Array2D<" << N << ">.c'tor(Array2D)" << journal::endl;
     }
 
 
@@ -60,8 +60,8 @@ namespace Exchanger {
     Array2D<T,N>::~Array2D()
     {
 // 	journal::debug_t debug("Array2D");
-// 	debug << journal::loc(__HERE__)
-// 	      << "in Array2D<" << N << ">.d'tor()" << journal::end;
+// 	debug << journal::at(__HERE__)
+// 	      << "in Array2D<" << N << ">.d'tor()" << journal::endl;
     }
 
 
@@ -69,8 +69,8 @@ namespace Exchanger {
     Array2D<T,N>& Array2D<T,N>::operator=(const Array2D<T,N>& rhs)
     {
 // 	journal::debug_t debug("Array2D");
-// 	debug << journal::loc(__HERE__)
-// 	      << "in Array2D<" << N << ">.operator=" << journal::end;
+// 	debug << journal::at(__HERE__)
+// 	      << "in Array2D<" << N << ">.operator=" << journal::endl;
 
 	if(this != &rhs)
 	    a_ = rhs.a_;
@@ -82,8 +82,8 @@ namespace Exchanger {
     void Array2D<T,N>::swap(Array2D<T,N>& rhs)
     {
 // 	journal::debug_t debug("Array2D");
-// 	debug << journal::loc(__HERE__)
-// 	      << "in Array2D<" << N << ">.swap" << journal::end;
+// 	debug << journal::at(__HERE__)
+// 	      << "in Array2D<" << N << ">.swap" << journal::endl;
 
 	if(this != &rhs)
 	    a_.swap(rhs.a_);
@@ -94,8 +94,8 @@ namespace Exchanger {
     void Array2D<T,N>::reserve(int n)
     {
 // 	journal::debug_t debug("Array2D");
-// 	debug << journal::loc(__HERE__)
-// 	      << "in Array2D<" << N << ">.reserve" << journal::end;
+// 	debug << journal::at(__HERE__)
+// 	      << "in Array2D<" << N << ">.reserve" << journal::endl;
 	a_.reserve(N*n);
     }
 
@@ -104,8 +104,8 @@ namespace Exchanger {
     void Array2D<T,N>::resize(int n, T val)
     {
 // 	journal::debug_t debug("Array2D");
-// 	debug << journal::loc(__HERE__)
-// 	      << "in Array2D<" << N << ">.resize" << journal::end;
+// 	debug << journal::at(__HERE__)
+// 	      << "in Array2D<" << N << ">.resize" << journal::endl;
 	a_.resize(N*n, val);
     }
 
@@ -114,8 +114,8 @@ namespace Exchanger {
     void Array2D<T,N>::shrink()
     {
 // 	journal::debug_t debug("Array2D");
-// 	debug << journal::loc(__HERE__)
-// 	      << "in Array2D<" << N << ">.shrink" << journal::end;
+// 	debug << journal::at(__HERE__)
+// 	      << "in Array2D<" << N << ">.shrink" << journal::endl;
 	std::vector<T>(a_).swap(a_);
     }
 
@@ -147,8 +147,8 @@ namespace Exchanger {
 #ifdef DEBUG
 	if (n > size()) {
  	    journal::firewall_t firewall("Array2D");
- 	    firewall << journal::loc(__HERE__)
- 		     << "Array2D: assignment out of range" << journal::end;
+ 	    firewall << journal::at(__HERE__)
+ 		     << "Array2D: assignment out of range" << journal::endl;
 	    throw std::out_of_range("Array2D");
 	}
 #endif
@@ -162,9 +162,9 @@ namespace Exchanger {
 #ifdef DEBUG
 	if(val.size() != N) {
  	    journal::firewall_t firewall("Array2D");
- 	    firewall << journal::loc(__HERE__)
+ 	    firewall << journal::at(__HERE__)
  		     << "Array2D: push_back incorrect size of vector"
-		     << journal::end;
+		     << journal::endl;
 	    throw std::invalid_argument("Array2D");
 	}
 #endif
@@ -363,7 +363,7 @@ namespace Exchanger {
 	    for (int j=0; j<N; j++)
 		info << a_[n*N + j] << "  ";
 	}
-	info << journal::newline << journal::end;
+	info << journal::newline << journal::endl;
 #endif
     }
 
@@ -375,8 +375,8 @@ namespace Exchanger {
 #ifdef DEBUG
 	if (index >= N) {
  	    journal::firewall_t firewall("Array2D");
- 	    firewall << journal::loc(__HERE__)
- 		     << "Array2D: first index out of range" << journal::end;
+ 	    firewall << journal::at(__HERE__)
+ 		     << "Array2D: first index out of range" << journal::endl;
 	    throw std::out_of_range("Array2D");
 	}
 #endif
@@ -391,8 +391,8 @@ namespace Exchanger {
 #ifdef DEBUG
 	if (index >= N) {
  	    journal::firewall_t firewall("Array2D");
- 	    firewall << journal::loc(__HERE__)
- 		     << "Array2D: first index out of range" << journal::end;
+ 	    firewall << journal::at(__HERE__)
+ 		     << "Array2D: first index out of range" << journal::endl;
 	    throw std::out_of_range("Array2D");
 	}
 #endif
@@ -416,8 +416,8 @@ namespace Exchanger {
 #ifdef DEBUG
 	if (index*N+n_ >= p_.size()) {
  	    journal::firewall_t firewall("Array2D");
- 	    firewall << journal::loc(__HERE__)
- 		     << "Array2D: second index out of range" << journal::end;
+ 	    firewall << journal::at(__HERE__)
+ 		     << "Array2D: second index out of range" << journal::endl;
 	    throw std::out_of_range("Array2D");
 	}
 #endif
@@ -431,8 +431,8 @@ namespace Exchanger {
 #ifdef DEBUG
 	if (index*N+n_ >= p_.size()) {
  	    journal::firewall_t firewall("Array2D");
- 	    firewall << journal::loc(__HERE__)
- 		     << "Array2D: second index out of range" << journal::end;
+ 	    firewall << journal::at(__HERE__)
+ 		     << "Array2D: second index out of range" << journal::endl;
 	    throw std::out_of_range("Array2D");
 	}
 #endif
