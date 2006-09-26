@@ -12,7 +12,6 @@ def copyright():
 
 
 # version
-__version__ = "@PACKAGE_VERSION@"
 __id__ = "$Id: __init__.py 2366 2005-08-29 19:28:14Z leif $"
 
 #  End of file 
