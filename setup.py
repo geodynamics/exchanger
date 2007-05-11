@@ -1,27 +1,24 @@
 
-# This is not a normal 'setup.py' script; it is provided as a
-# convenience to install Python packages required by Exchanger.  For
-# instructions on installing Exchanger itself, see the file INSTALL.
+from archimedes import use_merlin
+use_merlin()
 
-from ez_setup import use_setuptools
-use_setuptools()
+from merlin import setup, find_packages
 
-import setuptools
-import sys
+setup(
+    
+    name = 'Exchanger', 
+    version = '1.0',
 
-requirements = []
+    zip_safe = False,
+    packages = find_packages(),
+    
+    install_requires = [
+    'pythia[mpi] >= 0.8.1.0, < 0.8.2a',
+    ],
 
-if setuptools.bootstrap_install_from:
-    requirements.append(setuptools.bootstrap_install_from)
-    setuptools.bootstrap_install_from = None
+    author = 'Eh Tan',
+    author_email = 'cig-mc@geodynamics.org',
+    license = 'GPL',
+    url = 'http://www.geodynamics.org/cig/software/packages/mc/citcoms/',
 
-requirements.append('pythia >= 0.8-1.0dev-r4617, < 0.8-2.0a, == dev')
-
-setuptools.setup(
-    script_args = (
-    ['easy_install',
-     '--find-links=svn://geodynamics.org/cig/cs/pythia/trunk#egg=pythia-dev'] +
-    sys.argv[1:] +
-    requirements
-    )
 )

@@ -9,7 +9,7 @@
 
 #include <Python.h>
 #include "mpi.h"
-#include "mpi/Communicator.h"
+#include "mpi/pympi.h"
 #include "BoundedBox.h"
 #include "BoundingBox.h"
 #include "Convertor.h"
@@ -46,9 +46,9 @@ PyObject * PyExchanger_exchangeBoundedBox(PyObject *, PyObject *args)
 
     BoundedBox* bbox = static_cast<BoundedBox*>(PyCObject_AsVoidPtr(obj0));
 
-    mpi::Communicator* temp1 = static_cast<mpi::Communicator*>
-                               (PyCObject_AsVoidPtr(obj1));
-    MPI_Comm mycomm = temp1->handle();
+    PyMPICommObject *temp1 = static_cast<PyMPICommObject*>
+                             (PyCObject_AsVoidPtr(obj1));
+    MPI_Comm mycomm = temp1->comm;
 
     const int leader = 0;
     int rank;
@@ -58,9 +58,9 @@ PyObject * PyExchanger_exchangeBoundedBox(PyObject *, PyObject *args)
     BoundedBox* newbbox = new BoundedBox(*bbox);
 
     if(rank == leader) {
-        mpi::Communicator* temp2 = static_cast<mpi::Communicator*>
-                                   (PyCObject_AsVoidPtr(obj2));
-        MPI_Comm intercomm = temp2->handle();
+        PyMPICommObject* temp2 = static_cast<PyMPICommObject*>
+                                 (PyCObject_AsVoidPtr(obj2));
+        MPI_Comm intercomm = temp2->comm;
 
         // convert before sending
         Convertor& convertor = Convertor::instance();
@@ -94,9 +94,9 @@ PyObject * PyExchanger_exchangeBoundingBox(PyObject *, PyObject *args)
 
     BoundingBox* box = static_cast<BoundingBox*>(PyCObject_AsVoidPtr(obj0));
 
-    mpi::Communicator* temp1 = static_cast<mpi::Communicator*>
-                               (PyCObject_AsVoidPtr(obj1));
-    MPI_Comm mycomm = temp1->handle();
+    PyMPICommObject* temp1 = static_cast<PyMPICommObject*>
+                             (PyCObject_AsVoidPtr(obj1));
+    MPI_Comm mycomm = temp1->comm;
 
     const int leader = 0;
     int rank;
@@ -106,9 +106,9 @@ PyObject * PyExchanger_exchangeBoundingBox(PyObject *, PyObject *args)
     BoundingBox* remote_boxes;
 
     if(rank == leader) {
-        mpi::Communicator* temp2 = static_cast<mpi::Communicator*>
-                                   (PyCObject_AsVoidPtr(obj2));
-        MPI_Comm intercomm = temp2->handle();
+        PyMPICommObject* temp2 = static_cast<PyMPICommObject*>
+                                 (PyCObject_AsVoidPtr(obj2));
+        MPI_Comm intercomm = temp2->comm;
 
 	int my_comm_size;
 	MPI_Comm_size(mycomm, &my_comm_size);
@@ -137,18 +137,18 @@ PyObject * PyExchanger_exchangeSignal(PyObject *, PyObject *args)
                           &signal, &obj1, &obj2, &target))
         return NULL;
 
-    mpi::Communicator* temp1 = static_cast<mpi::Communicator*>
-                               (PyCObject_AsVoidPtr(obj1));
-    MPI_Comm mycomm = temp1->handle();
+    PyMPICommObject* temp1 = static_cast<PyMPICommObject*>
+                             (PyCObject_AsVoidPtr(obj1));
+    MPI_Comm mycomm = temp1->comm;
 
     const int leader = 0;
     int rank;
     MPI_Comm_rank(mycomm, &rank);
 
     if(rank == leader) {
-        mpi::Communicator* temp2 = static_cast<mpi::Communicator*>
-                                   (PyCObject_AsVoidPtr(obj2));
-        MPI_Comm intercomm = temp2->handle();
+        PyMPICommObject* temp2 = static_cast<PyMPICommObject*>
+                                 (PyCObject_AsVoidPtr(obj2));
+        MPI_Comm intercomm = temp2->comm;
 
         util::exchange(intercomm, target, signal);
     }
@@ -172,18 +172,18 @@ PyObject * PyExchanger_exchangeTimestep(PyObject *, PyObject *args)
                           &dt, &obj1, &obj2, &target))
         return NULL;
 
-    mpi::Communicator* temp1 = static_cast<mpi::Communicator*>
-                               (PyCObject_AsVoidPtr(obj1));
-    MPI_Comm mycomm = temp1->handle();
+    PyMPICommObject* temp1 = static_cast<PyMPICommObject*>
+                             (PyCObject_AsVoidPtr(obj1));
+    MPI_Comm mycomm = temp1->comm;
 
     const int leader = 0;
     int rank;
     MPI_Comm_rank(mycomm, &rank);
 
     if(rank == leader) {
-        mpi::Communicator* temp2 = static_cast<mpi::Communicator*>
-                                   (PyCObject_AsVoidPtr(obj2));
-        MPI_Comm intercomm = temp2->handle();
+        PyMPICommObject* temp2 = static_cast<PyMPICommObject*>
+                                 (PyCObject_AsVoidPtr(obj2));
+        MPI_Comm intercomm = temp2->comm;
 
         Convertor& convertor = Convertor::instance();
         convertor.time(dt);
@@ -289,9 +289,9 @@ PyObject * PyExchanger_Sink_create(PyObject *self, PyObject *args)
                           &obj1, &numSrc, &obj2))
         return NULL;
 
-    mpi::Communicator* temp = static_cast<mpi::Communicator*>
-                              (PyCObject_AsVoidPtr(obj1));
-    MPI_Comm comm = temp->handle();
+    PyMPICommObject* temp = static_cast<PyMPICommObject*>
+                            (PyCObject_AsVoidPtr(obj1));
+    MPI_Comm comm = temp->comm;
 
     BoundedMesh* b = static_cast<BoundedMesh*>(PyCObject_AsVoidPtr(obj2));
 

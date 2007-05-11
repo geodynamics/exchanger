@@ -8,9 +8,7 @@ EXTRA_DIST = \
 	doc/Exchanger.doxyconf
 
 # lib
-CXX = $(MPICXX)
-CXXLD = @CXX@
-INCLUDES = $(PYTHON_EGG_CPPFLAGS) -I$(PYTHON_INCDIR) $(MPIINCLUDES)
+AM_CPPFLAGS = $(PYTHON_EGG_CPPFLAGS) -I$(PYTHON_INCDIR) $(MPIINCLUDES)
 pkginclude_HEADERS = \
 	lib/Array2D.h \
 	lib/Array2D.cc \
@@ -52,16 +50,13 @@ libExchanger_la_LDFLAGS = -release $(PACKAGE_VERSION)
 libExchanger_la_LIBADD = $(PYTHON_EGG_LDFLAGS)
 
 # pyre
-nobase_pythonegg_PYTHON = \
+nobase_python_PYTHON = \
 	Exchanger/CoupledApp.py \
 	Exchanger/Coupler.py \
 	Exchanger/Exchanger.py \
 	Exchanger/Layout.py \
 	Exchanger/__init__.py
-pythonegginfo_PYTHON = \
-	requires.txt
 nodist_pythonegginfo_PYTHON = \
-	PKG-INFO \
 	config.cfg
 do_subst = sed \
 	-e 's|[@]PACKAGE[@]|$(PACKAGE)|g' \
@@ -70,14 +65,13 @@ do_subst = sed \
 	-e 's|[@]exec_prefix[@]|$(exec_prefix)|g' \
 	-e 's|[@]includedir[@]|$(includedir)|g' \
 	-e 's|[@]libdir[@]|$(libdir)|g'
-PKG-INFO: $(srcdir)/PKG-INFO.in
-	$(do_subst) < $(srcdir)/PKG-INFO.in > $@ || (rm -f $@ && exit 1)
 config.cfg: $(srcdir)/config.cfg.in
 	$(do_subst) < $(srcdir)/config.cfg.in > $@ || (rm -f $@ && exit 1)
 CLEANFILES = $(nodist_pythonegginfo_PYTHON)
 EXTRA_DIST += \
-	PKG-INFO.in \
-	config.cfg.in
+	config.cfg.in \
+	setup.py \
+	archimedes/__init__.py
 
 # export
 export_incdir = $(top_builddir)/include
@@ -89,5 +83,11 @@ export-pkgincludeHEADERS: $(pkginclude_HEADERS)
 	touch $@
 clean-pkgincludeHEADERS:
 	$(MAKE) $(AM_MAKEFLAGS) includedir=$(export_incdir) uninstall-pkgincludeHEADERS
+
+install-data-hook:
+	top_builddir=`$(am__cd) $(top_builddir) && pwd` && \
+		cd $(top_srcdir) && \
+		$(PYTHON) setup.py install_deps -H None -f $$top_builddir/deps --prefix=$(prefix) && \
+		$(PYTHON) setup.py egg_info -e $(pythondir)
 
 ## end of Makefile.am

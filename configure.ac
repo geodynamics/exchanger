@@ -6,7 +6,7 @@ AC_PREREQ(2.59)
 AC_INIT([Exchanger], [1.0.0], [cig-mc@geodynamics.org], [Exchanger])
 AC_CONFIG_AUX_DIR([./aux-config])
 AC_CONFIG_SRCDIR([Exchanger/Exchanger.py])
-AC_CONFIG_HEADER([portinfo])
+AC_CONFIG_HEADER([config.h])
 AC_CONFIG_MACRO_DIR([m4])
 AM_INIT_AUTOMAKE([foreign])
 
@@ -16,23 +16,24 @@ AC_ARG_VAR(PYTHONPATH, [Python module search path])
 
 # Check for Python.
 AM_PATH_PYTHON([2.3])
-CIT_PYTHON_INCDIR
+CIT_PYTHON_SYSCONFIG
 
-# Checks for Python modules and packages.
-CIT_CHECK_PYTHON_EGG([pythia >= 0.8-1.0dev-r4617, < 0.8-2.0a, == dev])
-CIT_PYTHON_EGG_FLAGS
-CIT_PYTHON_EGG_REQUIRES
+# Check for Python modules and packages.
+CIT_PYTHON_EGG_SETUP
+
+AC_SUBST([pythonegginfodir], [\${pythondir}/$PACKAGE.egg-info])
 
 # Checks for programs.
-CIT_PROG_MPICXX
+AC_PROG_CXX([mpicxx mpic++ mpiCC hcp mpCC mpxlC mpxlC_r cmpic++ g++ c++ gpp aCC CC cxx cc++ cl FCC KCC RCC xlc++_r xlC_r xlC icpc ecpc pgCC])
 AC_LANG(C++)
+AC_DISABLE_SHARED
 AC_PROG_LIBTOOL
 
 # Checks for libraries.
-CIT_CHECK_LIB_MPI
+AC_SEARCH_LIBS([MPI_Init], [mpi mpich], [], [AC_MSG_ERROR([MPI library not found])])
 
 # Checks for header files.
-CIT_HEADER_MPI
+AC_CHECK_HEADER([mpi.h], [], [AC_MSG_ERROR([header 'mpi.h' not found])])
 
 # Checks for typedefs, structures, and compiler characteristics.
 
