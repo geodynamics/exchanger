@@ -354,7 +354,6 @@ namespace Exchanger {
     template <class T, int N>
     void Array2D<T,N>::print(const std::string& prefix) const
     {
-#ifdef DEBUG
 	journal::info_t info(prefix);
 	info << "  " << prefix << ":  addr = " << &a_;
 
@@ -364,7 +363,6 @@ namespace Exchanger {
 		info << a_[n*N + j] << "  ";
 	}
 	info << journal::newline << journal::endl;
-#endif
     }
 
 
