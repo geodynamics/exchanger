@@ -29,16 +29,23 @@ namespace Exchanger {
 
 	MPI_Comm_rank(comm, &me);
 
+        // append the rank of all sources into sourceRanks array
 	sourceRanks.reserve(nsrc);
 	for(int i=0; i<nsrc+1; i++)
 	    if(i != me)
 		sourceRanks.push_back(i);
 
+        // send mesh to all sources, each source will find out which 
+        // mesh nodes are inside the source proc.
 	sendMesh(mesh);
 
+        // sources report back
 	recvMeshNode();
+
+        // assert all mesh nodes are reported
 	testMeshNode(mesh);
 
+        // keep a copy of the coordinates of mesh nodes
 	initX(mesh);
     }
 

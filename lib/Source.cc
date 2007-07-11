@@ -31,12 +31,19 @@ namespace Exchanger {
 
     void Source::init(BoundedMesh& mesh, const BoundedBox& mybbox)
     {
+        // receive mesh nodes from sink
 	recvMesh(mesh, mybbox);
+
+        // using interpolator to find out which nodes are inside this proc
 	if(isOverlapped(mesh.bbox(), mybbox)) {
 	    createInterpolator(mesh);
 	    meshNode_.print("Exchanger-Source-meshNode");
 	}
+
+        // report which nodes are inside this proc to sink
 	sendMeshNode();
+
+        // keep a copy of the coordinates of mesh nodes
 	initX(mesh);
     }
 
@@ -48,6 +55,7 @@ namespace Exchanger {
 	mesh.broadcast(comm, sinkRank);
 
 #else
+        // a more efficient approach, but not finished
 	BoundedBox bbox = mybbox;
 	util::exchange(comm, sinkRank, bbox);
 

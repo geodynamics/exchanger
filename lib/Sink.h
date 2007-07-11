@@ -18,6 +18,7 @@
 
 namespace Exchanger {
 
+    // forward declaration
     class BoundedMesh;
 
 
