@@ -33,7 +33,7 @@ AC_PROG_LIBTOOL
 AC_SEARCH_LIBS([MPI_Init], [mpi mpich], [], [AC_MSG_ERROR([MPI library not found])])
 
 # Checks for header files.
-AC_CHECK_HEADER([mpi.h], [], [AC_MSG_ERROR([header 'mpi.h' not found])])
+CIT_HEADER_MPI
 
 # Checks for typedefs, structures, and compiler characteristics.
 
