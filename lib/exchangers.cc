@@ -74,7 +74,7 @@ PyObject * PyExchanger_exchangeBoundedBox(PyObject *, PyObject *args)
     newbbox->print("Exchanger-exchangers-RemoteBBox");
 
     PyObject *cobj = PyCObject_FromVoidPtr(newbbox, deleteBoundedBox);
-    return Py_BuildValue("O", cobj);
+    return Py_BuildValue("N", cobj);
 }
 
 
@@ -116,7 +116,7 @@ PyObject * PyExchanger_exchangeBoundingBox(PyObject *, PyObject *args)
     broadcastBoundingBox(mycomm, leader, remote_boxes);
 
     PyObject *cobj = PyCObject_FromVoidPtr(remote_boxes, deleteBoundingBoxes);
-    return Py_BuildValue("O", cobj);
+    return Py_BuildValue("N", cobj);
 }
 
 
