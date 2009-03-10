@@ -7,6 +7,7 @@
 //~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 
+#include <typeinfo>
 #include "journal/diagnostics.h"
 #include "Array2D.h"
 #include "Utility.h"
