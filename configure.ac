@@ -3,7 +3,7 @@
 # $Id$
 
 AC_PREREQ(2.59)
-AC_INIT([Exchanger], [1.0.0], [cig-mc@geodynamics.org], [Exchanger])
+AC_INIT([Exchanger], [1.0.1], [cig-mc@geodynamics.org], [Exchanger])
 AC_CONFIG_AUX_DIR([./aux-config])
 AC_CONFIG_SRCDIR([Exchanger/Exchanger.py])
 AC_CONFIG_HEADER([config.h])
